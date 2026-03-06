@@ -1,1241 +1,630 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>سوق الدواجن | بيع وشراء الدواجن في الجزائر</title>
-<meta name="description" content="سوق الدواجن - منصة بيع وشراء الدواجن والأعلاف والمعدات في الجزائر مجاناً">
-<meta name="keywords" content="سوق الدواجن, بيع دجاج, شراء دجاج, بيض, أعلاف, فروج, ديك رومي, الجزائر">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<title>سوق الدواجن DZ</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐔</text></svg>"/>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet"/>
 <style>
-:root {
-  --green: #2D7A3A;
-  --green2: #3A9E4A;
-  --green-light: #E8F5E9;
-  --brown: #5D4037;
-  --brown2: #795548;
-  --brown-light: #EFEBE9;
-  --gold: #F9A825;
-  --white: #FFFFFF;
-  --bg: #F5F5F0;
-  --dark: #1A1A1A;
-  --text: #2C2C2C;
-  --text2: #666;
-  --border: #E0E0D8;
-  --card: #FFFFFF;
-  --red: #E53935;
-  --shadow: 0 2px 12px rgba(0,0,0,0.08);
-  --shadow2: 0 8px 30px rgba(0,0,0,0.12);
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Cairo',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; overflow-x:hidden; }
-::-webkit-scrollbar{width:6px} ::-webkit-scrollbar-track{background:#f0f0e8} ::-webkit-scrollbar-thumb{background:var(--green);border-radius:3px}
-
-/* ===== NAV ===== */
-nav {
-  position:sticky; top:0; z-index:100;
-  background:var(--green);
-  padding:0 16px; height:64px;
-  display:flex; align-items:center; justify-content:space-between;
-  box-shadow:0 3px 15px rgba(45,122,58,0.4);
-}
-.nav-logo { display:flex; align-items:center; gap:10px; cursor:pointer; }
-.nav-logo-icon {
-  width:42px; height:42px; background:white; border-radius:12px;
-  display:flex; align-items:center; justify-content:center; font-size:1.4rem;
-  box-shadow:0 2px 8px rgba(0,0,0,0.2);
-}
-.nav-logo-text { line-height:1.1; }
-.nav-logo-name { font-size:1.1rem; font-weight:900; color:white; }
-.nav-logo-sub { font-size:0.62rem; color:rgba(255,255,255,0.8); }
-.nav-actions { display:flex; gap:8px; align-items:center; }
-.btn { padding:8px 16px; border-radius:10px; font-family:'Cairo',sans-serif; font-weight:700; font-size:13px; cursor:pointer; border:none; transition:all 0.2s; }
-.btn-white { background:white; color:var(--green); }
-.btn-white:hover { background:var(--green-light); transform:translateY(-1px); }
-.btn-gold { background:var(--gold); color:var(--dark); box-shadow:0 3px 12px rgba(249,168,37,0.4); }
-.btn-gold:hover { transform:translateY(-1px); box-shadow:0 5px 18px rgba(249,168,37,0.5); }
-.btn-green { background:var(--green); color:white; border:2px solid rgba(255,255,255,0.3); }
-.btn-green:hover { background:var(--green2); }
-.btn-outline-white { background:transparent; border:2px solid rgba(255,255,255,0.6); color:white; }
-.btn-outline-white:hover { background:rgba(255,255,255,0.15); }
-.btn:disabled { opacity:0.6; cursor:not-allowed; transform:none !important; }
-.user-nav { display:flex; align-items:center; gap:8px; }
-.user-av {
-  width:36px; height:36px; border-radius:50%;
-  background:rgba(255,255,255,0.25); border:2px solid rgba(255,255,255,0.5);
-  display:flex; align-items:center; justify-content:center;
-  font-weight:900; font-size:14px; color:white; cursor:pointer; overflow:hidden;
-}
-.user-av img { width:100%; height:100%; object-fit:cover; }
-.user-nav-info { line-height:1.1; }
-.user-nav-name { font-size:13px; font-weight:700; color:white; max-width:80px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.user-nav-sub { font-size:10px; color:rgba(255,255,255,0.75); cursor:pointer; }
-.user-nav-sub:hover { color:white; }
-
-/* ===== PAGES ===== */
-.page { display:none; }
-.page.active { display:block; animation:fadeIn 0.3s ease; }
-#homePage { display:block; }
-@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
-
-/* ===== HERO ===== */
-.hero {
-  background:linear-gradient(135deg, #1B5E20 0%, var(--green) 50%, #4CAF50 100%);
-  padding:50px 16px 70px; text-align:center; position:relative; overflow:hidden;
-}
-.hero::before {
-  content:'🐔'; position:absolute; font-size:12rem;
-  left:-40px; top:-30px; opacity:0.06; transform:rotate(-20deg);
-}
-.hero::after {
-  content:'🌾'; position:absolute; font-size:10rem;
-  right:-30px; bottom:-20px; opacity:0.07; transform:rotate(15deg);
-}
-.hero-badge {
-  display:inline-flex; align-items:center; gap:6px;
-  background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.3);
-  padding:5px 16px; border-radius:50px; font-size:12px; color:white; margin-bottom:18px;
-}
-.hero h1 { font-size:clamp(24px,5vw,44px); font-weight:900; color:white; line-height:1.2; margin-bottom:10px; }
-.hero h1 .hl { color:var(--gold); }
-.hero p { color:rgba(255,255,255,0.85); font-size:14px; margin-bottom:28px; }
-.search-hero { max-width:580px; margin:0 auto; display:flex; gap:0; background:white; border-radius:14px; overflow:hidden; box-shadow:0 8px 30px rgba(0,0,0,0.2); }
-.search-hero input { flex:1; padding:14px 18px; border:none; outline:none; font-family:'Cairo',sans-serif; font-size:14px; color:var(--text); }
-.search-hero select { padding:14px 12px; border:none; border-right:1px solid var(--border); outline:none; font-family:'Cairo',sans-serif; font-size:13px; color:var(--text2); background:white; cursor:pointer; }
-.search-hero button { padding:14px 22px; background:var(--green); border:none; color:white; font-size:1.1rem; cursor:pointer; transition:background 0.2s; }
-.search-hero button:hover { background:var(--green2); }
-
-/* ===== STATS ===== */
-.stats-bar {
-  background:white; padding:16px;
-  display:flex; justify-content:center; gap:0;
-  box-shadow:var(--shadow); border-bottom:3px solid var(--green-light);
-}
-.stat-item { text-align:center; padding:8px 28px; border-left:1px solid var(--border); }
-.stat-item:last-child { border-left:none; }
-.stat-n { font-size:1.5rem; font-weight:900; color:var(--green); }
-.stat-l { font-size:11px; color:var(--text2); }
-
-/* ===== CATS ===== */
-.cats-section { padding:30px 16px; max-width:900px; margin:0 auto; }
-.section-hd { display:flex; align-items:center; justify-content:space-between; margin-bottom:18px; }
-.section-hd h2 { font-size:1.15rem; font-weight:800; display:flex; align-items:center; gap:8px; }
-.section-hd h2::before { content:''; width:4px; height:20px; background:var(--green); border-radius:2px; display:inline-block; }
-.see-all { font-size:13px; color:var(--green); font-weight:700; cursor:pointer; background:none; border:none; font-family:'Cairo',sans-serif; }
-.see-all:hover { text-decoration:underline; }
-.cats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; }
-.cat-card {
-  background:white; border-radius:16px; padding:18px 10px 14px;
-  text-align:center; cursor:pointer; transition:all 0.25s;
-  border:2px solid transparent; box-shadow:var(--shadow);
-}
-.cat-card:hover { border-color:var(--green); transform:translateY(-3px); box-shadow:var(--shadow2); }
-.cat-card.active-cat { border-color:var(--green); background:var(--green-light); }
-.cat-ic { font-size:2rem; margin-bottom:8px; }
-.cat-nm { font-size:12px; font-weight:700; color:var(--text); margin-bottom:3px; }
-.cat-cnt { font-size:10px; color:var(--green); font-weight:600; }
-
-/* ===== ADS GRID ===== */
-.ads-section { padding:0 16px 50px; max-width:1100px; margin:0 auto; }
-.ads-toolbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; flex-wrap:wrap; gap:10px; }
-.ads-count { font-size:13px; color:var(--text2); }
-.filters-row { display:flex; gap:8px; flex-wrap:wrap; }
-.filter-chip { padding:6px 14px; border-radius:50px; border:1px solid var(--border); background:white; font-family:'Cairo',sans-serif; font-size:12px; cursor:pointer; transition:all 0.2s; color:var(--text2); }
-.filter-chip.active, .filter-chip:hover { background:var(--green); border-color:var(--green); color:white; }
-.ads-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:14px; }
-.ad-card {
-  background:white; border-radius:16px; overflow:hidden;
-  box-shadow:var(--shadow); cursor:pointer; transition:all 0.25s;
-  border:2px solid transparent;
-}
-.ad-card:hover { transform:translateY(-4px); box-shadow:var(--shadow2); border-color:var(--green-light); }
-.ad-card-img {
-  width:100%; height:160px; background:var(--green-light);
-  display:flex; align-items:center; justify-content:center;
-  font-size:3.5rem; overflow:hidden; position:relative;
-}
-.ad-card-img img { width:100%; height:100%; object-fit:cover; }
-.ad-featured-badge {
-  position:absolute; top:8px; right:8px;
-  background:var(--gold); color:var(--dark); padding:3px 10px;
-  border-radius:50px; font-size:10px; font-weight:700;
-}
-.ad-type-badge {
-  position:absolute; bottom:8px; right:8px;
-  padding:3px 10px; border-radius:50px; font-size:10px; font-weight:700; color:white;
-}
-.type-sell { background:var(--green); }
-.type-buy { background:#1565C0; }
-.type-free { background:#6A1B9A; }
-.ad-card-body { padding:12px; }
-.ad-card-cat { font-size:10px; color:var(--green); font-weight:700; margin-bottom:3px; }
-.ad-card-title { font-size:14px; font-weight:700; margin-bottom:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.ad-card-price { font-size:16px; font-weight:900; color:var(--green); margin-bottom:7px; }
-.ad-card-meta { display:flex; justify-content:space-between; font-size:10px; color:var(--text2); }
-.empty-state { text-align:center; padding:60px 20px; grid-column:1/-1; color:var(--text2); }
-.empty-icon { font-size:4rem; margin-bottom:12px; }
-.empty-state h3 { font-size:1.1rem; color:var(--text); margin-bottom:6px; }
-
-/* ===== FLOAT BTN ===== */
-.float-btn {
-  position:fixed; bottom:24px; left:50%; transform:translateX(-50%);
-  background:linear-gradient(135deg,var(--green),var(--green2));
-  color:white; border:none; border-radius:50px; padding:14px 28px;
-  font-family:'Cairo',sans-serif; font-size:15px; font-weight:800;
-  cursor:pointer; box-shadow:0 8px 28px rgba(45,122,58,0.5); z-index:90;
-  display:flex; align-items:center; gap:8px; white-space:nowrap;
-  animation:bounce 3s ease-in-out infinite;
-}
-@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(-6px)} }
-.float-btn:hover { animation:none; transform:translateX(-50%) scale(1.05); }
-
-/* ===== CAT PAGE ===== */
-.sub-page-header {
-  background:white; padding:14px 16px;
-  border-bottom:2px solid var(--green-light);
-  display:flex; align-items:center; gap:12px;
-  position:sticky; top:64px; z-index:50;
-}
-.back-btn {
-  display:flex; align-items:center; gap:5px; padding:7px 14px;
-  background:var(--green-light); border:none; border-radius:10px;
-  cursor:pointer; font-family:'Cairo',sans-serif; font-size:13px;
-  font-weight:700; color:var(--green); transition:all 0.2s;
-}
-.back-btn:hover { background:var(--green); color:white; }
-.sub-page-title { font-size:18px; font-weight:800; display:flex; align-items:center; gap:8px; }
-.breadcrumb { font-size:12px; color:var(--text2); padding:10px 16px 0; max-width:1100px; margin:0 auto; display:flex; align-items:center; gap:5px; }
-.breadcrumb span { cursor:pointer; transition:color 0.2s; }
-.breadcrumb span:hover { color:var(--green); }
-.breadcrumb .cur { color:var(--text); font-weight:600; }
-
-/* ===== MODAL ===== */
-.modal-ov {
-  position:fixed; inset:0; background:rgba(0,0,0,0.6);
-  backdrop-filter:blur(6px); z-index:300; display:none;
-  align-items:center; justify-content:center; padding:16px;
-}
-.modal-ov.open { display:flex; }
-.modal {
-  background:white; border-radius:22px; width:100%; max-width:520px;
-  max-height:94vh; overflow-y:auto; padding:28px 22px;
-  position:relative; animation:modalIn 0.3s ease;
-  box-shadow:0 20px 60px rgba(0,0,0,0.25);
-}
-@keyframes modalIn { from{opacity:0;transform:scale(0.92)} to{opacity:1;transform:scale(1)} }
-.modal-close {
-  position:absolute; top:14px; left:14px;
-  width:32px; height:32px; background:var(--bg);
-  border:none; border-radius:9px; font-size:16px; cursor:pointer;
-  display:flex; align-items:center; justify-content:center; transition:all 0.2s;
-}
-.modal-close:hover { background:var(--red); color:white; }
-.modal h2 { font-size:1.3rem; font-weight:800; margin-bottom:20px; color:var(--text); display:flex; align-items:center; gap:8px; }
-.form-group { margin-bottom:15px; }
-.form-label { display:block; font-size:12px; font-weight:700; color:var(--text2); margin-bottom:5px; }
-.form-inp, .form-sel, .form-ta {
-  width:100%; padding:11px 14px; background:var(--bg);
-  border:2px solid var(--border); border-radius:12px;
-  font-family:'Cairo',sans-serif; font-size:13px; color:var(--text);
-  outline:none; transition:border-color 0.2s;
-}
-.form-inp:focus, .form-sel:focus, .form-ta:focus { border-color:var(--green); background:var(--green-light); }
-.form-sel option { background:white; }
-.form-ta { resize:vertical; min-height:90px; }
-.form-row2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.form-row3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
-.sub-btn {
-  width:100%; padding:14px; background:linear-gradient(135deg,var(--green),var(--green2));
-  border:none; border-radius:14px; color:white; font-family:'Cairo',sans-serif;
-  font-size:15px; font-weight:800; cursor:pointer; margin-top:6px;
-  box-shadow:0 5px 18px rgba(45,122,58,0.35); transition:all 0.2s;
-}
-.sub-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(45,122,58,0.45); }
-.sub-btn:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
-.auth-tabs { display:flex; background:var(--bg); border-radius:12px; padding:3px; margin-bottom:20px; }
-.auth-tab { flex:1; padding:10px; text-align:center; border-radius:10px; cursor:pointer; font-weight:700; font-size:13px; transition:all 0.2s; color:var(--text2); }
-.auth-tab.active { background:var(--green); color:white; box-shadow:0 3px 12px rgba(45,122,58,0.3); }
-.divider { display:flex; align-items:center; gap:10px; margin:14px 0; color:#ccc; font-size:12px; }
-.divider::before, .divider::after { content:''; flex:1; height:1px; background:var(--border); }
-
-/* IMG UPLOAD */
-.img-upload-area {
-  border:2px dashed var(--border); border-radius:14px;
-  padding:20px; text-align:center; cursor:pointer; transition:all 0.2s;
-}
-.img-upload-area:hover { border-color:var(--green); background:var(--green-light); }
-.img-upload-area input { display:none; }
-.img-upload-area p { font-size:12px; color:var(--text2); margin-top:6px; }
-.img-previews-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:8px; margin-top:10px; }
-.img-prev-item { aspect-ratio:1; border-radius:10px; overflow:hidden; position:relative; background:var(--bg); }
-.img-prev-item img { width:100%; height:100%; object-fit:cover; }
-.img-prev-del { position:absolute; top:3px; left:3px; width:20px; height:20px; background:rgba(229,57,53,0.85); border:none; border-radius:50%; color:white; font-size:11px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
-
-/* DETAIL MODAL */
-.detail-imgs { width:100%; height:230px; background:var(--green-light); border-radius:14px; overflow:hidden; display:flex; align-items:center; justify-content:center; font-size:5rem; margin-bottom:14px; position:relative; }
-.detail-imgs img { width:100%; height:100%; object-fit:cover; }
-.detail-imgs-nav { display:flex; gap:6px; margin-bottom:14px; overflow-x:auto; }
-.detail-thumb { width:60px; height:60px; border-radius:9px; overflow:hidden; cursor:pointer; border:2px solid transparent; flex-shrink:0; }
-.detail-thumb img { width:100%; height:100%; object-fit:cover; }
-.detail-thumb.active { border-color:var(--green); }
-.detail-info-box { background:var(--bg); border-radius:14px; padding:14px; margin-bottom:14px; }
-.detail-row { display:flex; justify-content:space-between; align-items:center; padding:7px 0; border-bottom:1px solid var(--border); font-size:13px; }
-.detail-row:last-child { border-bottom:none; }
-.detail-row .dl { color:var(--text2); }
-.detail-row .dv { font-weight:700; }
-.seller-box { background:var(--green-light); border-radius:14px; padding:14px; display:flex; align-items:center; gap:12px; margin-bottom:14px; }
-.seller-av { width:50px; height:50px; border-radius:50%; background:var(--green); display:flex; align-items:center; justify-content:center; font-size:1.3rem; font-weight:900; color:white; flex-shrink:0; overflow:hidden; }
-.seller-av img { width:100%; height:100%; object-fit:cover; }
-.seller-name { font-size:14px; font-weight:800; margin-bottom:2px; }
-.seller-city { font-size:12px; color:var(--text2); }
-.contact-btns { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-.btn-wa { background:var(--green); border:none; border-radius:12px; padding:13px; color:white; font-family:'Cairo',sans-serif; font-size:14px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px; box-shadow:0 4px 14px rgba(37,211,102,0.3); transition:all 0.2s; }
-.btn-wa:hover { background:#1da851; }
-.btn-call { background:white; border:2px solid var(--green); border-radius:12px; padding:13px; color:var(--green); font-family:'Cairo',sans-serif; font-size:14px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:6px; transition:all 0.2s; text-decoration:none; }
-.btn-call:hover { background:var(--green); color:white; }
-
-/* PROFILE */
-.profile-header { text-align:center; padding:20px 0 16px; margin-bottom:16px; border-bottom:2px solid var(--border); }
-.profile-av-wrap { position:relative; display:inline-block; margin-bottom:12px; }
-.profile-av { width:80px; height:80px; border-radius:50%; background:linear-gradient(135deg,var(--green),var(--green2)); display:flex; align-items:center; justify-content:center; font-size:2rem; font-weight:900; color:white; margin:0 auto; overflow:hidden; box-shadow:0 4px 16px rgba(45,122,58,0.35); }
-.profile-av img { width:100%; height:100%; object-fit:cover; }
-.profile-av-edit { position:absolute; bottom:2px; left:2px; width:26px; height:26px; background:var(--green); border:2px solid white; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; cursor:pointer; }
-.profile-name { font-size:1.1rem; font-weight:800; margin-bottom:4px; }
-.profile-meta { font-size:12px; color:var(--text2); }
-
-/* MY ADS */
-.my-ad-item { display:flex; align-items:center; gap:12px; padding:12px; background:var(--bg); border-radius:14px; margin-bottom:10px; }
-.my-ad-thumb { width:56px; height:56px; border-radius:10px; background:var(--green-light); display:flex; align-items:center; justify-content:center; font-size:1.6rem; overflow:hidden; flex-shrink:0; }
-.my-ad-thumb img { width:100%; height:100%; object-fit:cover; }
-.my-ad-info { flex:1; min-width:0; }
-.my-ad-title { font-size:13px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-.my-ad-price { font-size:12px; color:var(--green); font-weight:700; }
-.my-ad-stats { font-size:10px; color:var(--text2); margin-top:2px; }
-.my-ad-actions { display:flex; gap:6px; }
-.btn-edit { padding:6px 12px; background:var(--green-light); border:1px solid var(--green); color:var(--green); border-radius:8px; font-family:'Cairo',sans-serif; font-size:11px; font-weight:700; cursor:pointer; }
-.btn-del { padding:6px 12px; background:rgba(229,57,53,0.08); border:1px solid rgba(229,57,53,0.3); color:var(--red); border-radius:8px; font-family:'Cairo',sans-serif; font-size:11px; cursor:pointer; }
-.btn-del:hover { background:var(--red); color:white; }
-
-/* TOAST */
-.toast {
-  position:fixed; bottom:20px; right:16px; left:16px; max-width:340px; margin:0 auto;
-  background:var(--dark); color:white; padding:13px 20px; border-radius:14px;
-  font-size:13px; font-weight:600; z-index:999;
-  transform:translateY(100px); opacity:0; transition:all 0.35s;
-  box-shadow:0 8px 28px rgba(0,0,0,0.3); text-align:center;
-}
-.toast.show { transform:translateY(0); opacity:1; }
-.toast.success { background:var(--green); }
-.toast.error { background:var(--red); }
-.toast.info { background:var(--brown); }
-
-/* LOADING */
-.loading-wrap { text-align:center; padding:60px; grid-column:1/-1; }
-.spinner { width:40px; height:40px; border:4px solid var(--border); border-top-color:var(--green); border-radius:50%; animation:spin 0.8s linear infinite; margin:0 auto 14px; }
-@keyframes spin { to{transform:rotate(360deg)} }
-
-/* FOOTER */
-footer { background:var(--dark); color:rgba(255,255,255,0.7); padding:30px 16px; text-align:center; }
-.footer-logo { font-size:1.3rem; font-weight:900; color:var(--green2); margin-bottom:8px; }
-.footer-links { display:flex; justify-content:center; gap:20px; font-size:12px; flex-wrap:wrap; margin-bottom:12px; }
-.footer-links span { cursor:pointer; transition:color 0.2s; }
-.footer-links span:hover { color:white; }
-footer p { font-size:11px; }
-
-@media(max-width:540px) {
-  .cats-grid { grid-template-columns:repeat(3,1fr); }
-  .stats-bar { gap:0; }
-  .stat-item { padding:8px 14px; }
-  .form-row2, .form-row3 { grid-template-columns:1fr; }
-  .contact-btns { grid-template-columns:1fr; }
-  .search-hero select { display:none; }
-}
-@media(max-width:360px) { .cats-grid { grid-template-columns:repeat(2,1fr); } }
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{font-family:'Tajawal',sans-serif;background:#f0f0f5;min-height:100vh;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-thumb{background:#2e7d32;border-radius:4px;}
+#app{max-width:480px;margin:0 auto;min-height:100vh;background:#f7f7fc;position:relative;padding-bottom:80px;box-shadow:0 0 40px rgba(0,0,0,0.12);}
+.topbar{background:#fff;padding:12px 14px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee;position:sticky;top:0;z-index:60;gap:10px;}
+.topbar-logo{width:44px;height:44px;background:linear-gradient(135deg,#1b5e20,#43a047);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.topbar-brand{flex:1;text-align:center;}
+.topbar-brand .name{font-size:17px;font-weight:900;color:#1b5e20;}
+.topbar-brand .sub{font-size:11px;color:#888;}
+.btn-post-top{background:linear-gradient(135deg,#1565c0,#1e88e5);color:#fff;font-weight:800;border:none;cursor:pointer;border-radius:22px;padding:9px 14px;font-size:13px;font-family:'Tajawal',sans-serif;white-space:nowrap;box-shadow:0 4px 14px rgba(21,101,192,0.35);display:flex;align-items:center;gap:5px;}
+.search-wrap{padding:10px 12px 8px;background:#fff;border-bottom:1px solid #f0f0f0;display:flex;gap:8px;align-items:center;}
+.search-box{flex:1;display:flex;align-items:center;background:#f5f5f5;border-radius:22px;overflow:hidden;border:1.5px solid #e8e8e8;}
+.search-box input{flex:1;border:none;outline:none;background:transparent;padding:10px 14px;font-size:14px;font-family:'Tajawal',sans-serif;color:#333;}
+.search-box .ico{padding:10px 12px;font-size:18px;}
+.filter-btn{background:#f0faf0;border:1.5px solid #81c784;border-radius:22px;padding:9px 14px;font-size:13px;font-weight:700;color:#2e7d32;cursor:pointer;font-family:'Tajawal',sans-serif;white-space:nowrap;}
+.cat-row{display:flex;gap:8px;padding:10px 12px;overflow-x:auto;scrollbar-width:none;background:#fff;border-bottom:1px solid #f0f0f0;}
+.cat-row::-webkit-scrollbar{display:none;}
+.cat-chip{display:flex;align-items:center;gap:4px;padding:8px 16px;border-radius:22px;border:1.5px solid #ddd;background:#fff;font-size:13px;font-weight:700;color:#666;cursor:pointer;white-space:nowrap;font-family:'Tajawal',sans-serif;transition:all .2s;flex-shrink:0;}
+.cat-chip.on{background:linear-gradient(135deg,#1565c0,#1976d2);border-color:transparent;color:#fff;box-shadow:0 4px 12px rgba(21,101,192,0.3);}
+.hero{margin:12px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,#1b5e20 0%,#2e7d32 40%,#43a047 100%);padding:22px 20px;display:flex;align-items:center;justify-content:space-between;position:relative;}
+.hero::after{content:'';position:absolute;top:-40px;left:-40px;width:160px;height:160px;background:rgba(255,255,255,0.05);border-radius:50%;}
+.hero-txt .badge{display:inline-flex;align-items:center;gap:4px;background:#f5c842;color:#1a1208;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:800;margin-bottom:8px;}
+.hero-txt h2{color:#fff;font-size:22px;font-weight:900;line-height:1.2;margin-bottom:4px;}
+.hero-txt p{color:rgba(255,255,255,.8);font-size:12px;}
+.hero-img{font-size:68px;filter:drop-shadow(0 4px 10px rgba(0,0,0,.25));flex-shrink:0;}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;margin:0 12px;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.stat{padding:14px 6px;text-align:center;border-left:1px solid #f5f5f5;}
+.stat:last-child{border-left:none;}
+.stat .n{font-size:22px;font-weight:900;color:#2e7d32;}
+.stat .l{font-size:11px;color:#aaa;margin-top:2px;}
+.sec-head{display:flex;align-items:center;justify-content:space-between;padding:14px 14px 6px;}
+.sec-head .title{font-size:16px;font-weight:900;color:#222;}
+.sec-head .count{font-size:12px;color:#aaa;font-weight:500;}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:4px 12px 8px;}
+.card{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.07);cursor:pointer;transition:transform .2s,box-shadow .2s;position:relative;}
+.card:hover{transform:translateY(-3px);box-shadow:0 8px 22px rgba(0,0,0,.12);}
+.card-img{width:100%;height:130px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);display:flex;align-items:center;justify-content:center;font-size:52px;position:relative;overflow:hidden;}
+.card-img img{width:100%;height:100%;object-fit:cover;}
+.card-badge{position:absolute;top:8px;right:8px;background:linear-gradient(135deg,#1565c0,#1976d2);color:#fff;font-size:10px;font-weight:800;padding:3px 9px;border-radius:12px;font-family:'Tajawal',sans-serif;}
+.card-badge.verified{background:linear-gradient(135deg,#2e7d32,#43a047);}
+.fav-btn{position:absolute;top:8px;left:8px;background:rgba(255,255,255,.9);border:none;width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.12);}
+.card-body{padding:10px 10px 12px;}
+.card-cat{font-size:10px;color:#1565c0;font-weight:700;margin-bottom:3px;}
+.card-title{font-size:13px;font-weight:800;color:#222;line-height:1.3;margin-bottom:4px;}
+.card-desc{font-size:11px;color:#999;line-height:1.5;margin-bottom:6px;}
+.card-price{font-size:16px;font-weight:900;color:#2e7d32;margin-bottom:4px;}
+.card-loc{font-size:11px;color:#bbb;margin-bottom:10px;display:flex;align-items:center;gap:3px;}
+.card-actions{display:flex;gap:6px;}
+.btn-detail{flex:1;background:#f5f5f5;border:none;cursor:pointer;border-radius:10px;padding:8px 6px;font-size:12px;font-weight:700;color:#555;font-family:'Tajawal',sans-serif;}
+.btn-contact{flex:1;background:linear-gradient(135deg,#2e7d32,#43a047);border:none;cursor:pointer;border-radius:10px;padding:8px 6px;font-size:12px;font-weight:800;color:#fff;font-family:'Tajawal',sans-serif;display:flex;align-items:center;justify-content:center;gap:4px;}
+.float-btn{position:fixed;bottom:82px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#1565c0,#1e88e5);color:#fff;font-weight:800;border:none;cursor:pointer;border-radius:30px;padding:14px 28px;font-size:15px;font-family:'Tajawal',sans-serif;box-shadow:0 6px 22px rgba(21,101,192,0.45);display:flex;align-items:center;gap:8px;z-index:40;white-space:nowrap;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 6px 22px rgba(21,101,192,0.45);}50%{box-shadow:0 6px 32px rgba(21,101,192,0.65);}}
+.bottom-nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:480px;background:#fff;border-top:1px solid #eee;display:flex;z-index:50;box-shadow:0 -4px 16px rgba(0,0,0,.08);}
+.btab{flex:1;padding:10px 4px 8px;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;border:none;background:none;font-family:'Tajawal',sans-serif;}
+.btab .ico{font-size:22px;}
+.btab .lbl{font-size:10px;font-weight:700;color:#bbb;}
+.btab .lbl.on{color:#2e7d32;}
+.btab.post-tab .ico{background:linear-gradient(135deg,#1565c0,#1976d2);border-radius:50%;width:46px;height:46px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-top:-14px;box-shadow:0 4px 14px rgba(21,101,192,0.4);}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100;display:flex;align-items:flex-end;justify-content:center;}
+.sheet{background:#fff;width:100%;max-width:480px;border-radius:24px 24px 0 0;padding:16px 18px 50px;max-height:92vh;overflow-y:auto;}
+.sheet-handle{width:40px;height:4px;background:#ddd;border-radius:4px;margin:0 auto 16px;}
+.detail-img-big{width:100%;height:200px;background:linear-gradient(135deg,#e8f5e9,#c8e6c9);display:flex;align-items:center;justify-content:center;font-size:90px;border-radius:16px;margin-bottom:16px;overflow:hidden;position:relative;}
+.detail-img-big img{width:100%;height:100%;object-fit:cover;}
+.price-big{font-size:28px;font-weight:900;color:#2e7d32;margin-bottom:4px;}
+.detail-title{font-size:20px;font-weight:900;color:#222;margin-bottom:12px;}
+.info-row{display:flex;align-items:center;gap:8px;padding:10px 0;border-bottom:1px solid #f5f5f5;font-size:14px;color:#555;}
+.phone-big{font-size:22px;font-weight:900;color:#2e7d32;text-align:center;direction:ltr;padding:12px;background:#f0faf0;border-radius:12px;margin-bottom:10px;}
+.call-btn-big{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#1b5e20,#43a047);color:#fff;font-weight:800;border:none;cursor:pointer;border-radius:14px;padding:16px;font-size:16px;font-family:'Tajawal',sans-serif;width:100%;text-decoration:none;}
+.whatsapp-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(135deg,#1a7726,#25d366);color:#fff;font-weight:800;border:none;cursor:pointer;border-radius:14px;padding:14px;font-size:15px;font-family:'Tajawal',sans-serif;width:100%;text-decoration:none;margin-top:8px;}
+.form-group{margin-bottom:14px;}
+.form-label{display:block;font-size:13px;font-weight:700;color:#555;margin-bottom:7px;}
+.form-input{width:100%;background:#f8f8f8;border:1.5px solid #e8e8e8;color:#333;border-radius:12px;padding:13px 15px;font-size:14px;font-family:'Tajawal',sans-serif;transition:border .2s;}
+.form-input:focus{outline:none;border-color:#2e7d32;background:#fff;}
+textarea.form-input{resize:vertical;min-height:85px;}
+select.form-input{appearance:none;}
+.btn-submit{background:linear-gradient(135deg,#1565c0,#1e88e5);color:#fff;font-weight:800;border:none;cursor:pointer;border-radius:14px;padding:15px;font-size:16px;font-family:'Tajawal',sans-serif;width:100%;margin-top:6px;}
+.btn-submit-green{background:linear-gradient(135deg,#1b5e20,#43a047);color:#fff;font-weight:800;border:none;cursor:pointer;border-radius:14px;padding:15px;font-size:16px;font-family:'Tajawal',sans-serif;width:100%;margin-top:6px;}
+.auth-tabs{display:flex;background:#f5f5f5;border-radius:12px;padding:4px;margin-bottom:18px;}
+.a-tab{flex:1;padding:10px;text-align:center;font-size:14px;font-weight:700;cursor:pointer;border-radius:9px;border:none;background:none;font-family:'Tajawal',sans-serif;color:#999;}
+.a-tab.on{background:#fff;color:#1565c0;box-shadow:0 2px 8px rgba(0,0,0,.1);}
+.upload-area{border:2px dashed #c8e6c9;border-radius:14px;padding:24px;text-align:center;cursor:pointer;background:#f9fff9;position:relative;transition:border .2s;}
+.upload-area:hover{border-color:#2e7d32;}
+.upload-area input{position:absolute;inset:0;opacity:0;cursor:pointer;}
+.p-avatar{width:76px;height:76px;background:linear-gradient(135deg,#1b5e20,#43a047);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;margin:0 auto 10px;color:#fff;font-weight:900;}
+.p-item{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:1px solid #f5f5f5;cursor:pointer;}
+.p-badge{background:#2e7d32;color:#fff;width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;}
+.toast{position:fixed;top:70px;left:50%;transform:translateX(-50%);z-index:999;padding:12px 22px;border-radius:14px;font-weight:800;font-size:14px;white-space:nowrap;font-family:'Tajawal',sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.2);}
+.t-ok{background:linear-gradient(135deg,#1b5e20,#43a047);color:#fff;}
+.t-err{background:linear-gradient(135deg,#b71c1c,#e53935);color:#fff;}
+.empty{text-align:center;padding:70px 20px;color:#ccc;}
+.empty .ei{font-size:60px;margin-bottom:12px;}
+.empty .et{font-size:16px;font-weight:700;color:#bbb;}
+.page{display:none;}
+.page.on{display:block;}
+.post-header{background:linear-gradient(135deg,#1b5e20,#2d9e40);padding:14px 16px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:10;}
+.back-btn{background:rgba(255,255,255,0.2);border:none;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;}
 </style>
 </head>
 <body>
+<div id="app">
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo" onclick="goHome()">
-    <div class="nav-logo-icon">🐔</div>
-    <div class="nav-logo-text">
-      <div class="nav-logo-name">سوق الدواجن</div>
-      <div class="nav-logo-sub">الجزائر • بيع وشراء مجاني</div>
+<div id="toast" class="toast" style="display:none"></div>
+
+<!-- HOME -->
+<div id="pg-home" class="page on">
+  <div class="topbar">
+    <button class="btn-post-top" onclick="requireAuth('post')">✨ أنشر إعلانك</button>
+    <div class="topbar-brand">
+      <div class="name">🐔 سوق الدواجن DZ</div>
+      <div class="sub">بيع · شراء · تبادل</div>
     </div>
+    <div class="topbar-logo">🐔</div>
   </div>
-  <div class="nav-actions">
-    <div id="navGuest" style="display:flex;gap:8px">
-      <button class="btn btn-outline-white" onclick="openModal('authModal')">دخول</button>
-      <button class="btn btn-gold" onclick="requireAuth()">+ نشر إعلان</button>
+  <div class="search-wrap">
+    <div class="search-box">
+      <span class="ico">🔍</span>
+      <input id="search-inp" type="text" placeholder="ابحث: دجاج، بيض، أعلاف..." oninput="renderCards()"/>
     </div>
-    <div id="navUser" style="display:none">
-      <div class="user-nav">
-        <div class="user-av" id="navAv" onclick="openModal('profileModal')">أ</div>
-        <div class="user-nav-info">
-          <div class="user-nav-name" id="navName">المستخدم</div>
-          <div class="user-nav-sub" onclick="openMyAds()">إعلاناتي</div>
-        </div>
-        <button class="btn btn-outline-white" onclick="doLogout()" style="font-size:11px;padding:6px 10px">خروج</button>
-      </div>
-    </div>
+    <button class="filter-btn" onclick="setCat('all')">🔄 الكل</button>
   </div>
-</nav>
-
-<!-- HOME PAGE -->
-<div id="homePage" class="page active">
-
-  <section class="hero">
-    <div class="hero-badge">🇩🇿 سوق الدواجن الأول في الجزائر</div>
-    <h1>بيع واشترِ الدواجن<br><span class="hl">مجاناً في كل ولايات الجزائر</span></h1>
-    <p>آلاف الإعلانات للدواجن والأعلاف والمعدات البيطرية</p>
-    <div class="search-hero">
-      <input type="text" id="searchInp" placeholder="ابحث... دجاج، فروج، أعلاف، معدات...">
-      <select id="searchWilaya">
-        <option value="">كل الولايات</option>
-        <option>الجزائر العاصمة</option><option>وهران</option><option>قسنطينة</option>
-        <option>عنابة</option><option>سطيف</option><option>تلمسان</option>
-        <option>بجاية</option><option>بسكرة</option><option>باتنة</option>
-        <option>المدية</option><option>البليدة</option><option>تيزي وزو</option>
-        <option>مستغانم</option><option>سكيكدة</option><option>غليزان</option>
-        <option>تيارت</option><option>الأغواط</option><option>ورقلة</option>
-        <option>أخرى</option>
-      </select>
-      <button onclick="doSearch()">🔍</button>
+  <div class="cat-row" id="cat-row"></div>
+  <div class="hero" style="margin-top:10px;">
+    <div class="hero-txt">
+      <div class="badge">✨ مرحباً بكم</div>
+      <h2>سوق الدواجن<br/>الجزائري</h2>
+      <p>أنشر إعلانك مجاناً الآن</p>
     </div>
-  </section>
-
-  <div class="stats-bar">
-    <div class="stat-item"><div class="stat-n" id="statAds">0</div><div class="stat-l">إعلان نشط</div></div>
-    <div class="stat-item"><div class="stat-n" id="statUsers">0</div><div class="stat-l">مستخدم مسجل</div></div>
-    <div class="stat-item"><div class="stat-n">58</div><div class="stat-l">ولاية مغطاة</div></div>
-    <div class="stat-item"><div class="stat-n">مجاني</div><div class="stat-l">100% مجاني</div></div>
+    <div class="hero-img">🐓</div>
   </div>
-
-  <section class="cats-section">
-    <div class="section-hd">
-      <h2>تصفح حسب الفئة</h2>
-    </div>
-    <div class="cats-grid">
-      <div class="cat-card" onclick="openCat('دجاج','🐔')"><div class="cat-ic">🐔</div><div class="cat-nm">دجاج</div><div class="cat-cnt" id="cnt-دجاج">0 إعلان</div></div>
-      <div class="cat-card" onclick="openCat('فروج','🐤')"><div class="cat-ic">🐤</div><div class="cat-nm">فروج وكتاكيت</div><div class="cat-cnt" id="cnt-فروج">0 إعلان</div></div>
-      <div class="cat-card" onclick="openCat('ديك رومي','🦃')"><div class="cat-ic">🦃</div><div class="cat-nm">ديك رومي</div><div class="cat-cnt" id="cnt-ديك رومي">0 إعلان</div></div>
-      <div class="cat-card" onclick="openCat('بط','🦆')"><div class="cat-ic">🦆</div><div class="cat-nm">بط</div><div class="cat-cnt" id="cnt-بط">0 إعلان</div></div>
-      <div class="cat-card" onclick="openCat('إوز','🪿')"><div class="cat-ic">🪿</div><div class="cat-nm">إوز</div><div class="cat-cnt" id="cnt-إوز">0 إعلان</div></div>
-      <div class="cat-card" onclick="openCat('بيض','🥚')"><div class="cat-ic">🥚</div><div class="cat-nm">بيض</div><div class="cat-cnt" id="cnt-بيض">0 إعلان</div></div>
-      <div class="cat-card" onclick="openCat('أعلاف','🌾')"><div class="cat-ic">🌾</div><div class="cat-nm">أعلاف</div><div class="cat-cnt" id="cnt-أعلاف">0 إعلان</div></div>
-      <div class="cat-card" onclick="openCat('معدات','🧰')"><div class="cat-ic">🧰</div><div class="cat-nm">معدات</div><div class="cat-cnt" id="cnt-معدات">0 إعلان</div></div>
-      <div class="cat-card" onclick="openCat('بيطري','💊')"><div class="cat-ic">💊</div><div class="cat-nm">خدمات بيطرية</div><div class="cat-cnt" id="cnt-بيطري">0 إعلان</div></div>
-      <div class="cat-card" onclick="openCat('سمان','🐦')"><div class="cat-ic">🐦</div><div class="cat-nm">سمان</div><div class="cat-cnt" id="cnt-سمان">0 إعلان</div></div>
-      <div class="cat-card" onclick="openCat('حمام','🕊️')"><div class="cat-ic">🕊️</div><div class="cat-nm">حمام</div><div class="cat-cnt" id="cnt-حمام">0 إعلان</div></div>
-      <div class="cat-card" onclick="openCat('أخرى','📦')"><div class="cat-ic">📦</div><div class="cat-nm">أخرى</div><div class="cat-cnt" id="cnt-أخرى">0 إعلان</div></div>
-    </div>
-  </section>
-
-  <section class="ads-section">
-    <div class="section-hd">
-      <h2>أحدث الإعلانات</h2>
-      <button class="see-all" onclick="openCat('all','🏷️')">عرض الكل</button>
-    </div>
-    <div class="ads-toolbar">
-      <div class="ads-count" id="adsCount">جاري التحميل...</div>
-      <div class="filters-row">
-        <div class="filter-chip active" onclick="setTypeFilter('all',this)">الكل</div>
-        <div class="filter-chip" onclick="setTypeFilter('للبيع',this)">للبيع</div>
-        <div class="filter-chip" onclick="setTypeFilter('للشراء',this)">مطلوب</div>
-        <div class="filter-chip" onclick="setTypeFilter('مجاني',this)">مجاني</div>
-      </div>
-    </div>
-    <div class="ads-grid" id="homeAdsGrid">
-      <div class="loading-wrap"><div class="spinner"></div><p>جاري تحميل الإعلانات...</p></div>
-    </div>
-    <div style="text-align:center;margin-top:20px">
-      <button class="btn btn-green" id="loadMoreBtn" style="display:none" onclick="loadMore()">تحميل المزيد</button>
-    </div>
-  </section>
-
-  <div style="height:80px"></div>
-</div>
-
-<!-- CATEGORY PAGE -->
-<div id="catPage" class="page">
-  <div class="sub-page-header">
-    <button class="back-btn" onclick="goHome()">← رجوع</button>
-    <div class="sub-page-title" id="catPageTitle">الفئة</div>
+  <div class="stats" style="margin-top:10px;">
+    <div class="stat"><div class="n" id="s1">0</div><div class="l">إعلان نشط</div></div>
+    <div class="stat"><div class="n">58</div><div class="l">ولاية</div></div>
+    <div class="stat"><div class="n" id="s3">0</div><div class="l">بائع مسجل</div></div>
   </div>
-  <div class="breadcrumb">
-    <span onclick="goHome()">🏠 الرئيسية</span>
-    <span>›</span>
-    <span class="cur" id="breadCat">الفئة</span>
+  <div class="sec-head" style="margin-top:10px;">
+    <div class="title">📢 الإعلانات</div>
+    <div class="count" id="count-lbl"></div>
   </div>
-  <div style="padding:16px;max-width:1100px;margin:0 auto">
-    <div class="ads-toolbar">
-      <div class="ads-count" id="catAdsCount">0 إعلان</div>
-      <div class="filters-row">
-        <div class="filter-chip active" onclick="setCatTypeFilter('all',this)">الكل</div>
-        <div class="filter-chip" onclick="setCatTypeFilter('للبيع',this)">للبيع</div>
-        <div class="filter-chip" onclick="setCatTypeFilter('للشراء',this)">مطلوب</div>
-        <div class="filter-chip" onclick="setCatTypeFilter('مجاني',this)">مجاني</div>
-      </div>
-    </div>
-    <div class="ads-grid" id="catAdsGrid"></div>
-    <div style="text-align:center;margin-top:20px">
-      <button class="btn btn-green" id="catLoadMoreBtn" style="display:none" onclick="catLoadMore()">تحميل المزيد</button>
-    </div>
-  </div>
-  <div style="height:80px"></div>
-</div>
-
-<!-- SEARCH PAGE -->
-<div id="searchPage" class="page">
-  <div class="sub-page-header">
-    <button class="back-btn" onclick="goHome()">← رجوع</button>
-    <div class="sub-page-title">🔍 نتائج البحث</div>
-  </div>
-  <div style="padding:16px;max-width:1100px;margin:0 auto">
-    <div class="ads-count" id="searchCount" style="margin-bottom:14px"></div>
-    <div class="ads-grid" id="searchGrid"></div>
-  </div>
-  <div style="height:80px"></div>
-</div>
-
-<footer>
-  <div class="footer-logo">🐔 سوق الدواجن DZ</div>
-  <div class="footer-links">
-    <span onclick="goHome()">الرئيسية</span>
-    <span onclick="openCat('دجاج','🐔')">الدجاج</span>
-    <span onclick="openCat('أعلاف','🌾')">الأعلاف</span>
-    <span onclick="openCat('معدات','🧰')">المعدات</span>
-    <span onclick="requireAuth()">نشر إعلان</span>
-  </div>
-  <p>© 2025 سوق الدواجن DZ - منصة بيع وشراء مجانية 🇩🇿</p>
-</footer>
-
-<button class="float-btn" onclick="requireAuth()">🐔 أنشر إعلانك مجاناً</button>
-<div class="toast" id="toast"></div>
-
-<!-- ===== AUTH MODAL ===== -->
-<div class="modal-ov" id="authModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('authModal')">✕</button>
-    <h2>🐔 مرحباً بك في سوق الدواجن</h2>
-    <div class="auth-tabs">
-      <div class="auth-tab active" onclick="switchTab('login')">تسجيل الدخول</div>
-      <div class="auth-tab" onclick="switchTab('register')">إنشاء حساب</div>
-    </div>
-    <div id="loginForm">
-      <div class="form-group"><label class="form-label">📧 البريد الإلكتروني</label><input class="form-inp" type="email" id="lEmail" placeholder="example@gmail.com"></div>
-      <div class="form-group"><label class="form-label">🔑 كلمة المرور</label><input class="form-inp" type="password" id="lPass" placeholder="••••••••"></div>
-      <button class="sub-btn" onclick="doLogin()" id="loginBtn">🚀 دخول</button>
-      <div class="divider">أو</div>
-      <button onclick="doGoogleLogin()" style="width:100%;padding:12px;background:white;border:2px solid var(--border);border-radius:12px;font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;cursor:pointer;color:var(--text);display:flex;align-items:center;justify-content:center;gap:8px;transition:border-color 0.2s" onmouseover="this.style.borderColor='#4285f4'" onmouseout="this.style.borderColor='var(--border)'">
-        🔵 الدخول بحساب Google
-      </button>
-    </div>
-    <div id="registerForm" style="display:none">
-      <div class="form-group"><label class="form-label">👤 الاسم الكامل *</label><input class="form-inp" id="rName" placeholder="اسمك الكامل"></div>
-      <div class="form-row2">
-        <div class="form-group"><label class="form-label">📧 البريد الإلكتروني *</label><input class="form-inp" type="email" id="rEmail" placeholder="example@gmail.com"></div>
-        <div class="form-group"><label class="form-label">📞 رقم الهاتف *</label><input class="form-inp" type="tel" id="rPhone" placeholder="0xxxxxxxxx"></div>
-      </div>
-      <div class="form-group"><label class="form-label">📍 الولاية *</label>
-        <select class="form-sel" id="rCity">
-          <option value="">اختر الولاية</option>
-          <option>الجزائر العاصمة</option><option>وهران</option><option>قسنطينة</option>
-          <option>عنابة</option><option>سطيف</option><option>تلمسان</option><option>بجاية</option>
-          <option>بسكرة</option><option>باتنة</option><option>المدية</option><option>البليدة</option>
-          <option>تيزي وزو</option><option>مستغانم</option><option>سكيكدة</option>
-          <option>غليزان</option><option>تيارت</option><option>الأغواط</option><option>ورقلة</option>
-          <option>الجلفة</option><option>جيجل</option><option>سعيدة</option><option>البويرة</option>
-          <option>تبسة</option><option>خنشلة</option><option>سوق أهراس</option><option>تيبازة</option>
-          <option>ميلة</option><option>عين الدفلى</option><option>النعامة</option><option>غرداية</option>
-          <option>أخرى</option>
-        </select>
-      </div>
-      <div class="form-group"><label class="form-label">🔑 كلمة المرور *</label><input class="form-inp" type="password" id="rPass" placeholder="6 أحرف على الأقل"></div>
-      <button class="sub-btn" onclick="doRegister()" id="regBtn">✅ إنشاء حساب مجاني</button>
-    </div>
+  <div class="grid" id="cards-grid"></div>
+  <div id="empty-state" class="empty">
+    <div class="ei">🐔</div>
+    <div class="et">لا توجد إعلانات بعد</div>
+    <div style="font-size:13px;color:#ddd;margin-top:6px;">كن أول من ينشر إعلانه!</div>
   </div>
 </div>
 
-<!-- ===== POST AD MODAL ===== -->
-<div class="modal-ov" id="postModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('postModal')">✕</button>
-    <h2>🐔 نشر إعلان جديد</h2>
-    <div class="form-group"><label class="form-label">📌 عنوان الإعلان *</label><input class="form-inp" id="adTitle" placeholder="مثال: دجاج بلدي طازج للبيع - 50 رأس" maxlength="80"></div>
-    <div class="form-row2">
-      <div class="form-group"><label class="form-label">🗂️ الفئة *</label>
-        <select class="form-sel" id="adCat">
-          <option value="">اختر الفئة</option>
-          <option>دجاج</option><option>فروج</option><option>ديك رومي</option>
-          <option>بط</option><option>إوز</option><option>بيض</option>
-          <option>أعلاف</option><option>معدات</option><option>بيطري</option>
-          <option>سمان</option><option>حمام</option><option>أخرى</option>
-        </select>
-      </div>
-      <div class="form-group"><label class="form-label">🏷️ نوع الإعلان *</label>
-        <select class="form-sel" id="adType">
-          <option value="">اختر النوع</option>
-          <option>للبيع</option><option>للشراء</option><option>مجاني</option>
-        </select>
-      </div>
+<!-- FAVS -->
+<div id="pg-favs" class="page">
+  <div class="topbar">
+    <div></div>
+    <div class="topbar-brand"><div class="name">❤️ المفضلة</div></div>
+    <div></div>
+  </div>
+  <div class="grid" id="favs-grid" style="margin-top:10px;"></div>
+  <div id="empty-favs" class="empty">
+    <div class="ei">🤍</div>
+    <div class="et">لا توجد مفضلة بعد</div>
+    <div style="font-size:12px;color:#ddd;margin-top:6px;">اضغط 🤍 في أي إعلان</div>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<div id="pg-search" class="page">
+  <div class="topbar">
+    <div></div>
+    <div class="topbar-brand"><div class="name">🔍 البحث</div></div>
+    <div></div>
+  </div>
+  <div class="search-wrap">
+    <div class="search-box" style="flex:1">
+      <span class="ico">🔍</span>
+      <input id="search-inp2" type="text" placeholder="ابحث عن أي شيء..." oninput="renderSearch()"/>
     </div>
-    <div class="form-row3">
-      <div class="form-group"><label class="form-label">💰 السعر (دج)</label><input class="form-inp" type="number" id="adPrice" placeholder="السعر"></div>
-      <div class="form-group"><label class="form-label">📦 الكمية</label><input class="form-inp" id="adQty" placeholder="مثال: 100 رأس"></div>
-      <div class="form-group"><label class="form-label">📍 الولاية *</label>
-        <select class="form-sel" id="adWilaya">
-          <option value="">اختر</option>
-          <option>الجزائر العاصمة</option><option>وهران</option><option>قسنطينة</option>
-          <option>عنابة</option><option>سطيف</option><option>تلمسان</option><option>بجاية</option>
-          <option>بسكرة</option><option>باتنة</option><option>المدية</option><option>البليدة</option>
-          <option>تيزي وزو</option><option>مستغانم</option><option>سكيكدة</option>
-          <option>غليزان</option><option>تيارت</option><option>الأغواط</option><option>ورقلة</option>
-          <option>الجلفة</option><option>جيجل</option><option>سعيدة</option><option>البويرة</option>
-          <option>تبسة</option><option>خنشلة</option><option>سوق أهراس</option><option>تيبازة</option>
-          <option>ميلة</option><option>عين الدفلى</option><option>النعامة</option><option>غرداية</option>
-          <option>أخرى</option>
-        </select>
-      </div>
+  </div>
+  <div class="cat-row" id="cat-row2" style="margin-top:2px;"></div>
+  <div class="grid" id="search-grid" style="margin-top:8px;"></div>
+</div>
+
+<!-- POST -->
+<div id="pg-post" class="page">
+  <div class="post-header">
+    <button class="back-btn" onclick="switchTab('home')">←</button>
+    <div style="color:#fff;font-size:17px;font-weight:900;">📢 نشر إعلان</div>
+  </div>
+  <div id="post-locked" style="text-align:center;padding:80px 24px;display:none;">
+    <div style="font-size:56px;margin-bottom:14px;">🔒</div>
+    <div style="font-size:18px;font-weight:800;color:#222;margin-bottom:8px;">يجب تسجيل الدخول أولاً</div>
+    <div style="font-size:14px;color:#888;margin-bottom:20px;">سجل دخولك لنشر إعلاناتك مجاناً</div>
+    <button class="btn-submit" style="max-width:220px;margin:0 auto;" onclick="showSheet('auth')">تسجيل الدخول</button>
+  </div>
+  <div id="post-form" style="padding:16px;display:none;">
+    <div style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:16px;padding:14px;margin-bottom:18px;display:flex;align-items:center;gap:10px;">
+      <div style="font-size:32px;">📢</div>
+      <div><div style="font-size:15px;font-weight:900;color:#1b5e20;">نشر إعلان مجاناً</div><div style="font-size:12px;color:#555;">أضف تفاصيل إعلانك أدناه</div></div>
     </div>
-    <div class="form-group"><label class="form-label">📝 الوصف *</label><textarea class="form-ta" id="adDesc" placeholder="اشرح تفاصيل الإعلان: الحالة الصحية، العمر، الوزن، طريقة التسليم..."></textarea></div>
-    <div class="form-group"><label class="form-label">📞 رقم الهاتف للتواصل *</label><input class="form-inp" type="tel" id="adPhone" placeholder="0xxxxxxxxx"></div>
     <div class="form-group">
-      <label class="form-label">🖼️ صور الإعلان (حتى 5 صور)</label>
-      <div class="img-upload-area" onclick="document.getElementById('imgInp').click()">
-        <div style="font-size:2rem">📷</div>
-        <p>اضغط لإضافة صور (JPG, PNG)</p>
-        <input type="file" id="imgInp" accept="image/*" multiple onchange="previewImages(event)">
-      </div>
-      <div class="img-previews-grid" id="imgPreviews"></div>
+      <label class="form-label">📝 عنوان الإعلان *</label>
+      <input class="form-input" id="ad-title" placeholder="مثال: دجاج لاحم عمر 45 يوم للبيع"/>
     </div>
-    <button class="sub-btn" onclick="submitAd()" id="submitAdBtn">🚀 نشر الإعلان الآن</button>
-  </div>
-</div>
-
-<!-- ===== DETAIL MODAL ===== -->
-<div class="modal-ov" id="detailModal">
-  <div class="modal" style="max-width:560px">
-    <button class="modal-close" onclick="closeModal('detailModal')">✕</button>
-    <div id="detailContent"></div>
-  </div>
-</div>
-
-<!-- ===== PROFILE MODAL ===== -->
-<div class="modal-ov" id="profileModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('profileModal')">✕</button>
-    <h2>👤 ملفي الشخصي</h2>
-    <div class="profile-header">
-      <div class="profile-av-wrap">
-        <div class="profile-av" id="profileAvatar">أ</div>
-        <div class="profile-av-edit" onclick="document.getElementById('avatarInp').click()">✏️</div>
-        <input type="file" id="avatarInp" accept="image/*" style="display:none" onchange="changeAvatar(event)">
-      </div>
-      <div class="profile-name" id="profileName"></div>
-      <div class="profile-meta" id="profileMeta"></div>
+    <div class="form-group">
+      <label class="form-label">📂 الفئة *</label>
+      <select class="form-input" id="ad-cat">
+        <option value="broiler">🐔 دجاج لاحم</option>
+        <option value="layer">🐓 دجاج بياض</option>
+        <option value="eggs">🥚 بيض</option>
+        <option value="turkey">🦃 ديك رومي</option>
+        <option value="feed">🌾 أعلاف</option>
+        <option value="vet">💉 بيطري وأدوية</option>
+        <option value="chicks">🐣 كتاكيت</option>
+        <option value="equip">🏗️ معدات</option>
+      </select>
     </div>
-    <div class="form-group"><label class="form-label">👤 الاسم الكامل</label><input class="form-inp" id="editName" placeholder="اسمك الكامل"></div>
-    <div class="form-row2">
-      <div class="form-group"><label class="form-label">📞 رقم الهاتف</label><input class="form-inp" id="editPhone" placeholder="0xxxxxxxxx"></div>
-      <div class="form-group"><label class="form-label">📍 الولاية</label>
-        <select class="form-sel" id="editCity">
-          <option value="">اختر</option>
-          <option>الجزائر العاصمة</option><option>وهران</option><option>قسنطينة</option>
-          <option>عنابة</option><option>سطيف</option><option>تلمسان</option><option>بجاية</option>
-          <option>بسكرة</option><option>باتنة</option><option>المدية</option><option>البليدة</option>
-          <option>تيزي وزو</option><option>مستغانم</option><option>سكيكدة</option>
-          <option>الجلفة</option><option>تيارت</option><option>ورقلة</option><option>أخرى</option>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div class="form-group">
+        <label class="form-label">💰 السعر *</label>
+        <input class="form-input" id="ad-price" placeholder="380 دج/كغ"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">📍 الولاية *</label>
+        <select class="form-input" id="ad-wilaya">
+          <option value="">-- اختر --</option>
+          <option>01 - أدرار</option><option>02 - الشلف</option>
+          <option>03 - الأغواط</option><option>04 - أم البواقي</option>
+          <option>05 - باتنة</option><option>06 - بجاية</option>
+          <option>07 - بسكرة</option><option>08 - بشار</option>
+          <option>09 - البليدة</option><option>10 - البويرة</option>
+          <option>11 - تمنراست</option><option>12 - تبسة</option>
+          <option>13 - تلمسان</option><option>14 - تيارت</option>
+          <option>15 - تيزي وزو</option><option>16 - الجزائر</option>
+          <option>17 - الجلفة</option><option>18 - جيجل</option>
+          <option>19 - سطيف</option><option>20 - سعيدة</option>
+          <option>21 - سكيكدة</option><option>22 - سيدي بلعباس</option>
+          <option>23 - عنابة</option><option>24 - قالمة</option>
+          <option>25 - قسنطينة</option><option>26 - المدية</option>
+          <option>27 - مستغانم</option><option>28 - المسيلة</option>
+          <option>29 - معسكر</option><option>30 - ورقلة</option>
+          <option>31 - وهران</option><option>32 - البيض</option>
+          <option>33 - إليزي</option><option>34 - برج بوعريريج</option>
+          <option>35 - بومرداس</option><option>36 - الطارف</option>
+          <option>37 - تندوف</option><option>38 - تسمسيلت</option>
+          <option>39 - الوادي</option><option>40 - خنشلة</option>
+          <option>41 - سوق أهراس</option><option>42 - تيبازة</option>
+          <option>43 - ميلة</option><option>44 - عين الدفلى</option>
+          <option>45 - النعامة</option><option>46 - عين تيموشنت</option>
+          <option>47 - غرداية</option><option>48 - رليزان</option>
+          <option>49 - تيميمون</option><option>50 - برج باجي مختار</option>
+          <option>51 - أولاد جلال</option><option>52 - بني عباس</option>
+          <option>53 - عين صالح</option><option>54 - عين قزام</option>
+          <option>55 - توقرت</option><option>56 - جانت</option>
+          <option>57 - المغير</option><option>58 - المنيعة</option>
         </select>
       </div>
     </div>
-    <button class="sub-btn" onclick="saveProfile()" id="saveProfileBtn">💾 حفظ التعديلات</button>
-    <button onclick="doLogout()" style="width:100%;padding:12px;background:rgba(229,57,53,0.08);border:1px solid rgba(229,57,53,0.3);color:var(--red);border-radius:12px;font-family:'Cairo',sans-serif;font-size:13px;font-weight:700;cursor:pointer;margin-top:10px">🚪 تسجيل الخروج</button>
-  </div>
-</div>
-
-<!-- ===== MY ADS MODAL ===== -->
-<div class="modal-ov" id="myAdsModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('myAdsModal')">✕</button>
-    <h2>📋 إعلاناتي</h2>
-    <div id="myAdsList"><div class="loading-wrap"><div class="spinner"></div></div></div>
-    <button class="sub-btn" onclick="closeModal('myAdsModal');requireAuth()" style="margin-top:14px">➕ إضافة إعلان جديد</button>
-  </div>
-</div>
-
-<!-- ===== EDIT AD MODAL ===== -->
-<div class="modal-ov" id="editAdModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal('editAdModal')">✕</button>
-    <h2>✏️ تعديل الإعلان</h2>
-    <input type="hidden" id="editAdId">
-    <div class="form-group"><label class="form-label">📌 عنوان الإعلان</label><input class="form-inp" id="editAdTitle"></div>
-    <div class="form-row2">
-      <div class="form-group"><label class="form-label">💰 السعر (دج)</label><input class="form-inp" type="number" id="editAdPrice"></div>
-      <div class="form-group"><label class="form-label">📦 الكمية</label><input class="form-inp" id="editAdQty"></div>
+    <div class="form-group">
+      <label class="form-label">📄 الوصف *</label>
+      <textarea class="form-input" id="ad-desc" placeholder="اكتب تفاصيل المنتج: الكمية، الحالة الصحية، التحصينات..."></textarea>
     </div>
-    <div class="form-group"><label class="form-label">📝 الوصف</label><textarea class="form-ta" id="editAdDesc"></textarea></div>
-    <div class="form-group"><label class="form-label">📞 رقم الهاتف</label><input class="form-inp" type="tel" id="editAdPhone"></div>
-    <button class="sub-btn" onclick="saveEditAd()" id="saveEditBtn">💾 حفظ التعديلات</button>
+    <div class="form-group">
+      <label class="form-label">📞 رقم التواصل</label>
+      <input class="form-input" id="ad-phone" placeholder="06xxxxxxxx"/>
+    </div>
+    <div class="form-group">
+      <label class="form-label">📸 صورة المنتج</label>
+      <div class="upload-area">
+        <div id="upload-placeholder">
+          <div style="font-size:38px;margin-bottom:8px;">📸</div>
+          <div style="font-weight:700;color:#333;margin-bottom:4px;">اضغط لرفع صورة</div>
+          <div style="font-size:12px;color:#999;">JPG أو PNG</div>
+        </div>
+        <img id="img-preview" style="max-height:160px;border-radius:10px;display:none;" alt=""/>
+        <input type="file" accept="image/*" onchange="handleImg(this)"/>
+      </div>
+    </div>
+    <button class="btn-submit" onclick="postAd()">🚀 نشر الإعلان مجاناً</button>
   </div>
 </div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getFirestore, collection, addDoc, getDocs, query, orderBy, limit, doc, deleteDoc, updateDoc, increment, where, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+<!-- BOTTOM NAV -->
+<div class="bottom-nav">
+  <button class="btab" onclick="switchTab('home')">
+    <span class="ico">🏠</span><span class="lbl on" id="lbl-home">الرئيسية</span>
+  </button>
+  <button class="btab" onclick="switchTab('search')">
+    <span class="ico">🔍</span><span class="lbl" id="lbl-search">بحث</span>
+  </button>
+  <button class="btab post-tab" onclick="requireAuth('post')">
+    <span class="ico">➕</span><span class="lbl" id="lbl-post">نشر</span>
+  </button>
+  <button class="btab" onclick="switchTab('favs')">
+    <span class="ico">❤️</span><span class="lbl" id="lbl-favs">المفضلة</span>
+  </button>
+  <button class="btab" onclick="showSheet('profile')">
+    <span class="ico">👤</span><span class="lbl" id="lbl-profile">حسابي</span>
+  </button>
+</div>
 
-// ===== FIREBASE CONFIG =====
-const firebaseConfig = {
-  apiKey: "AIzaSyCyejRGX1nfr8vACwQeLUsa1kIshWwQZj4",
-  authDomain: "market-algerie.firebaseapp.com",
-  projectId: "market-algerie",
-  storageBucket: "market-algerie.firebasestorage.app",
-  messagingSenderId: "915670005616",
-  appId: "1:915670005616:web:2b1caf265b0b4574cf01b5"
-};
+<button class="float-btn" id="float-btn" onclick="requireAuth('post')">✨ أنشر إعلانك مجاناً</button>
 
-let db, auth, googleProvider;
-try {
-  const app = initializeApp(firebaseConfig);
-  db = getFirestore(app);
-  auth = getAuth(app);
-  googleProvider = new GoogleAuthProvider();
-} catch(e) {
-  console.error('Firebase init error:', e);
-  showToast('خطأ في الاتصال بالخادم','error');
+<!-- DETAIL SHEET -->
+<div id="sheet-detail" class="overlay" style="display:none;" onclick="closeSheetIf(event,'sheet-detail')">
+  <div class="sheet" id="detail-content"></div>
+</div>
+
+<!-- AUTH SHEET -->
+<div id="sheet-auth" class="overlay" style="display:none;" onclick="closeSheetIf(event,'sheet-auth')">
+  <div class="sheet">
+    <div class="sheet-handle"></div>
+    <div style="text-align:center;margin-bottom:18px;">
+      <div style="font-size:44px;margin-bottom:8px;">🐔</div>
+      <div style="font-size:20px;font-weight:900;color:#1b5e20;">سوق الدواجن DZ</div>
+    </div>
+    <div class="auth-tabs">
+      <button class="a-tab on" id="atab-login" onclick="switchAuthTab('login')">تسجيل الدخول</button>
+      <button class="a-tab" id="atab-reg" onclick="switchAuthTab('reg')">إنشاء حساب</button>
+    </div>
+    <div id="auth-login">
+      <div class="form-group">
+        <label class="form-label">رقم الهاتف</label>
+        <input class="form-input" id="l-phone" placeholder="06xxxxxxxx"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">كلمة المرور</label>
+        <input class="form-input" type="password" id="l-pass" placeholder="كلمة المرور"/>
+      </div>
+      <button class="btn-submit-green" onclick="doLogin()">تسجيل الدخول</button>
+    </div>
+    <div id="auth-reg" style="display:none;">
+      <div class="form-group">
+        <label class="form-label">الاسم الكامل</label>
+        <input class="form-input" id="r-name" placeholder="الاسم الكامل"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">رقم الهاتف</label>
+        <input class="form-input" id="r-phone" placeholder="06xxxxxxxx"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label">كلمة المرور</label>
+        <input class="form-input" type="password" id="r-pass" placeholder="كلمة المرور"/>
+      </div>
+      <button class="btn-submit" onclick="doRegister()">إنشاء الحساب</button>
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE SHEET -->
+<div id="sheet-profile" class="overlay" style="display:none;" onclick="closeSheetIf(event,'sheet-profile')">
+  <div class="sheet" id="profile-content"></div>
+</div>
+
+</div>
+
+<script>
+const CATS=[
+  {id:"all",label:"✨ الكل",icon:"🏪"},
+  {id:"broiler",label:"لاحم",icon:"🐔"},
+  {id:"layer",label:"بياض",icon:"🐓"},
+  {id:"eggs",label:"بيض",icon:"🥚"},
+  {id:"turkey",label:"ديك رومي",icon:"🦃"},
+  {id:"feed",label:"أعلاف",icon:"🌾"},
+  {id:"vet",label:"بيطري",icon:"💉"},
+  {id:"chicks",label:"كتاكيت",icon:"🐣"},
+  {id:"equip",label:"معدات",icon:"🏗️"},
+];
+let listings=[];
+let favs=[];
+let currentCat="all";
+let currentUser=null;
+let imgBase64=null;
+
+function catIcon(id){const c=CATS.find(x=>x.id===id);return c?c.icon:"📦";}
+function catLabel(id){const c=CATS.find(x=>x.id===id);return c?c.label:id;}
+
+function toast(msg,type){
+  const el=document.getElementById('toast');
+  el.textContent=msg;
+  el.className='toast '+(type==='err'?'t-err':'t-ok');
+  el.style.display='block';
+  setTimeout(()=>el.style.display='none',2800);
 }
 
-const IMGUR_ID = '546c25a59c58ad7';
-const PAGE_SIZE = 12;
+function renderCats(){
+  ['cat-row','cat-row2'].forEach(id=>{
+    const row=document.getElementById(id);
+    if(!row)return;
+    row.innerHTML=CATS.map(c=>`<span class="cat-chip ${currentCat===c.id?'on':''}" onclick="setCat('${c.id}')">${c.icon} ${c.label}</span>`).join('');
+  });
+}
 
-// ===== STATE =====
-let currentUser = null;
-let currentUserData = {};
-let allAds = [];
-let homeTypeFilter = 'all';
-let catTypeFilter = 'all';
-let currentCat = 'all';
-let homeDisplayCount = PAGE_SIZE;
-let catDisplayCount = PAGE_SIZE;
-let selectedImgs = [];
+function setCat(id){currentCat=id;renderCats();renderCards();renderSearch();}
 
-// ===== CATS =====
-const CAT_ICONS = {
-  'دجاج':'🐔','فروج':'🐤','ديك رومي':'🦃','بط':'🦆','إوز':'🪿',
-  'بيض':'🥚','أعلاف':'🌾','معدات':'🧰','بيطري':'💊',
-  'سمان':'🐦','حمام':'🕊️','أخرى':'📦'
-};
-
-// ===== UTILS =====
-const timeAgo = d => {
-  if(!d) return '';
-  const sec = Math.floor((Date.now() - (d.toDate ? d.toDate() : new Date(d)).getTime()) / 1000);
-  if(sec < 60) return 'الآن';
-  if(sec < 3600) return `${Math.floor(sec/60)} دقيقة`;
-  if(sec < 86400) return `${Math.floor(sec/3600)} ساعة`;
-  if(sec < 2592000) return `${Math.floor(sec/86400)} يوم`;
-  return `${Math.floor(sec/2592000)} شهر`;
-};
-
-window.showToast = (msg, type='success') => {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = `toast show ${type}`;
-  clearTimeout(window._toastTimer);
-  window._toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
-};
-
-window.openModal = id => document.getElementById(id).classList.add('open');
-window.closeModal = id => document.getElementById(id).classList.remove('open');
-
-window.goHome = () => {
-  showPage('homePage');
-  renderHomeAds();
-};
-
-const showPage = id => {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
-};
-
-// ===== AD CARD =====
-const adCardHTML = (ad, i) => {
-  const icon = CAT_ICONS[ad.cat] || '📦';
-  const priceStr = ad.price ? Number(ad.price).toLocaleString() + ' دج' : 'قابل للتفاوض';
-  const typeClass = ad.type === 'للبيع' ? 'type-sell' : ad.type === 'للشراء' ? 'type-buy' : 'type-free';
-  return `
-  <div class="ad-card" style="animation-delay:${i*0.04}s" onclick="openDetail('${ad.id}')">
-    <div class="ad-card-img">
-      ${ad.images && ad.images[0] ? `<img src="${ad.images[0]}" loading="lazy" alt="${ad.title}">` : icon}
-      <span class="ad-type-badge ${typeClass}">${ad.type}</span>
+function cardHTML(l){
+  const isFav=favs.includes(l.id);
+  const img=l.image?`<img src="${l.image}" alt=""/>`:`<span>${catIcon(l.category)}</span>`;
+  const badge=l.verified?`<div class="card-badge verified">✅ موثق</div>`:(l.isNew?`<div class="card-badge">✨ جديد</div>`:'');
+  return `<div class="card" id="card-${l.id}">
+    <div class="card-img">${img}${badge}
+      <button class="fav-btn" onclick="toggleFav(${l.id},event)">${isFav?'❤️':'🤍'}</button>
     </div>
-    <div class="ad-card-body">
-      <div class="ad-card-cat">${icon} ${ad.cat}</div>
-      <div class="ad-card-title">${ad.title}</div>
-      <div class="ad-card-price">${priceStr}</div>
-      <div class="ad-card-meta">
-        <span>📍 ${ad.wilaya}</span>
-        <span>🕐 ${timeAgo(ad.createdAt)}</span>
+    <div class="card-body">
+      <div class="card-cat">${catIcon(l.category)} ${catLabel(l.category)}</div>
+      <div class="card-title">${l.title}</div>
+      <div class="card-desc">${l.description.substring(0,55)}...</div>
+      <div class="card-price">${l.price}</div>
+      <div class="card-loc">📍 ${l.wilaya}</div>
+      <div class="card-actions">
+        <button class="btn-detail" onclick="showDetail(${l.id})">التفاصيل</button>
+        <button class="btn-contact" onclick="callNow('${l.phone}',event)">تواصل 💬</button>
       </div>
     </div>
   </div>`;
-};
+}
 
-// ===== RENDER HOME =====
-const renderHomeAds = () => {
-  let list = [...allAds].sort((a,b) => {
-    const ta = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(a.createdAt||0);
-    const tb = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(b.createdAt||0);
-    return tb - ta;
+function renderCards(){
+  const q=(document.getElementById('search-inp').value||'').trim();
+  const filtered=listings.filter(l=>{
+    const mc=currentCat==='all'||l.category===currentCat;
+    const ms=!q||l.title.includes(q)||l.wilaya.includes(q)||l.description.includes(q);
+    return mc&&ms;
   });
-  if(homeTypeFilter !== 'all') list = list.filter(a => a.type === homeTypeFilter);
-  const grid = document.getElementById('homeAdsGrid');
-  document.getElementById('adsCount').textContent = `${list.length} إعلان`;
-  if(!list.length) {
-    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">📭</div><h3>لا توجد إعلانات بعد</h3><p>كن أول من ينشر!</p></div>`;
-    document.getElementById('loadMoreBtn').style.display = 'none'; return;
-  }
-  grid.innerHTML = list.slice(0, homeDisplayCount).map((ad,i) => adCardHTML(ad,i)).join('');
-  document.getElementById('loadMoreBtn').style.display = list.length > homeDisplayCount ? 'inline-block' : 'none';
-};
+  const grid=document.getElementById('cards-grid');
+  const empty=document.getElementById('empty-state');
+  document.getElementById('count-lbl').textContent=`(${filtered.length})`;
+  document.getElementById('s1').textContent=listings.length;
+  if(filtered.length===0){grid.innerHTML='';empty.style.display='block';}
+  else{empty.style.display='none';grid.innerHTML=filtered.map(cardHTML).join('');}
+}
 
-window.loadMore = () => { homeDisplayCount += PAGE_SIZE; renderHomeAds(); };
-
-window.setTypeFilter = (type, el) => {
-  homeTypeFilter = type; homeDisplayCount = PAGE_SIZE;
-  document.querySelectorAll('#homePage .filter-chip').forEach(b => b.classList.remove('active'));
-  el.classList.add('active'); renderHomeAds();
-};
-
-// ===== OPEN CATEGORY =====
-window.openCat = (cat, icon) => {
-  currentCat = cat; catTypeFilter = 'all'; catDisplayCount = PAGE_SIZE;
-  document.getElementById('catPageTitle').textContent = (icon||'') + ' ' + (cat==='all'?'جميع الإعلانات':cat);
-  document.getElementById('breadCat').textContent = cat === 'all' ? 'جميع الإعلانات' : cat;
-  document.querySelectorAll('#catPage .filter-chip').forEach((b,i) => b.classList.toggle('active', i===0));
-  showPage('catPage');
-  renderCatAds();
-};
-
-const renderCatAds = () => {
-  let list = [...allAds].sort((a,b) => {
-    const ta = a.createdAt?.toDate ? a.createdAt.toDate() : new Date(a.createdAt||0);
-    const tb = b.createdAt?.toDate ? b.createdAt.toDate() : new Date(b.createdAt||0);
-    return tb - ta;
+function renderSearch(){
+  const q=(document.getElementById('search-inp2').value||'').trim();
+  const filtered=listings.filter(l=>{
+    const mc=currentCat==='all'||l.category===currentCat;
+    const ms=!q||l.title.includes(q)||l.wilaya.includes(q)||l.description.includes(q);
+    return mc&&ms;
   });
-  if(currentCat !== 'all') list = list.filter(a => a.cat === currentCat);
-  if(catTypeFilter !== 'all') list = list.filter(a => a.type === catTypeFilter);
-  const grid = document.getElementById('catAdsGrid');
-  document.getElementById('catAdsCount').textContent = `${list.length} إعلان`;
-  if(!list.length) {
-    grid.innerHTML = `<div class="empty-state"><div class="empty-icon">📭</div><h3>لا توجد إعلانات في هذه الفئة</h3><p>انشر أول إعلان!</p><button class="btn btn-green" onclick="requireAuth()" style="margin-top:12px">+ نشر إعلان</button></div>`;
-    document.getElementById('catLoadMoreBtn').style.display = 'none'; return;
-  }
-  grid.innerHTML = list.slice(0, catDisplayCount).map((ad,i) => adCardHTML(ad,i)).join('');
-  document.getElementById('catLoadMoreBtn').style.display = list.length > catDisplayCount ? 'inline-block' : 'none';
-};
+  document.getElementById('search-grid').innerHTML=filtered.length?filtered.map(cardHTML).join(''):'<div class="empty" style="grid-column:span 2"><div class="ei">🔍</div><div class="et">لا توجد نتائج</div></div>';
+}
 
-window.catLoadMore = () => { catDisplayCount += PAGE_SIZE; renderCatAds(); };
-window.setCatTypeFilter = (type, el) => {
-  catTypeFilter = type; catDisplayCount = PAGE_SIZE;
-  document.querySelectorAll('#catPage .filter-chip').forEach(b => b.classList.remove('active'));
-  el.classList.add('active'); renderCatAds();
-};
+function renderFavs(){
+  const fl=listings.filter(l=>favs.includes(l.id));
+  const grid=document.getElementById('favs-grid');
+  const empty=document.getElementById('empty-favs');
+  if(fl.length===0){grid.innerHTML='';empty.style.display='block';}
+  else{empty.style.display='none';grid.innerHTML=fl.map(cardHTML).join('');}
+}
 
-// ===== SEARCH =====
-window.doSearch = () => {
-  const q = document.getElementById('searchInp').value.trim();
-  const w = document.getElementById('searchWilaya').value;
-  if(!q && !w) return;
-  let results = [...allAds];
-  if(q) results = results.filter(a =>
-    a.title?.includes(q) || a.desc?.includes(q) || a.cat?.includes(q)
-  );
-  if(w) results = results.filter(a => a.wilaya === w);
-  showPage('searchPage');
-  document.getElementById('searchCount').textContent = `${results.length} نتيجة للبحث عن "${q || w}"`;
-  const grid = document.getElementById('searchGrid');
-  grid.innerHTML = results.length
-    ? results.map((ad,i) => adCardHTML(ad,i)).join('')
-    : `<div class="empty-state"><div class="empty-icon">🔍</div><h3>لا نتائج</h3><p>جرب كلمة بحث أخرى</p></div>`;
-};
+function toggleFav(id,e){
+  e.stopPropagation();
+  favs=favs.includes(id)?favs.filter(x=>x!==id):[...favs,id];
+  renderCards();renderFavs();renderSearch();
+}
 
-// ===== LOAD ADS =====
-const loadAds = async () => {
-  try {
-    const snap = await getDocs(query(collection(db,'ads'), orderBy('createdAt','desc'), limit(500)));
-    allAds = snap.docs.map(d => ({id: d.id, ...d.data()}));
-    updateCounts();
-    updateStats();
-    renderHomeAds();
-  } catch(e) {
-    console.error(e);
-    document.getElementById('homeAdsGrid').innerHTML = `<div class="empty-state"><div class="empty-icon">⚠️</div><h3>تعذر تحميل الإعلانات</h3><p>تحقق من اتصالك بالإنترنت</p></div>`;
-  }
-};
+function callNow(phone,e){if(e)e.stopPropagation();window.location.href='tel:'+phone;}
 
-const updateCounts = () => {
-  Object.keys(CAT_ICONS).forEach(cat => {
-    const el = document.getElementById('cnt-'+cat);
-    if(el) el.textContent = allAds.filter(a => a.cat === cat).length + ' إعلان';
-  });
-};
-
-const updateStats = async () => {
-  document.getElementById('statAds').textContent = allAds.length + '+';
-  try {
-    const s = await getDocs(collection(db,'users'));
-    document.getElementById('statUsers').textContent = s.size + '+';
-  } catch(e) {
-    document.getElementById('statUsers').textContent = '0';
-  }
-};
-
-// ===== OPEN DETAIL =====
-window.openDetail = async id => {
-  const ad = allAds.find(a => a.id === id);
-  if(!ad) return;
-  const icon = CAT_ICONS[ad.cat] || '📦';
-  const priceStr = ad.price ? Number(ad.price).toLocaleString() + ' دج' : 'قابل للتفاوض';
-  const typeClass = ad.type === 'للبيع' ? 'type-sell' : ad.type === 'للشراء' ? 'type-buy' : 'type-free';
-  const imgs = ad.images && ad.images.length ? ad.images : [];
-  document.getElementById('detailContent').innerHTML = `
-    <div class="detail-imgs" id="mainImg">
-      ${imgs[0] ? `<img src="${imgs[0]}" id="mainImgEl">` : icon}
+function showDetail(id){
+  const l=listings.find(x=>x.id===id);
+  if(!l)return;
+  const img=l.image?`<img src="${l.image}" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0;"/>`:`<span style="font-size:90px;">${catIcon(l.category)}</span>`;
+  document.getElementById('detail-content').innerHTML=`
+    <div class="sheet-handle"></div>
+    <div class="detail-img-big">${img}</div>
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:4px;">
+      <div class="price-big">${l.price}</div>
+      ${l.verified?`<span style="background:#e8f5e9;color:#2e7d32;padding:4px 10px;border-radius:12px;font-size:12px;font-weight:700;">✅ موثق</span>`:''}
     </div>
-    ${imgs.length > 1 ? `
-    <div class="detail-imgs-nav">
-      ${imgs.map((u,i) => `<div class="detail-thumb ${i===0?'active':''}" onclick="switchImg('${u}',this)"><img src="${u}"></div>`).join('')}
-    </div>` : ''}
-    <span class="ad-type-badge ${typeClass}" style="display:inline-block;margin-bottom:10px;position:static">${ad.type}</span>
-    <h3 style="font-size:1.15rem;font-weight:800;margin-bottom:8px">${ad.title}</h3>
-    <div style="font-size:1.5rem;font-weight:900;color:var(--green);margin-bottom:14px">${priceStr}</div>
-    <div class="detail-info-box">
-      <div class="detail-row"><span class="dl">الفئة</span><span class="dv">${icon} ${ad.cat}</span></div>
-      ${ad.qty ? `<div class="detail-row"><span class="dl">الكمية</span><span class="dv">📦 ${ad.qty}</span></div>` : ''}
-      <div class="detail-row"><span class="dl">الولاية</span><span class="dv">📍 ${ad.wilaya}</span></div>
-      <div class="detail-row"><span class="dl">تاريخ النشر</span><span class="dv">🕐 ${timeAgo(ad.createdAt)}</span></div>
-      <div class="detail-row"><span class="dl">المشاهدات</span><span class="dv">👁️ ${(ad.views||0)+1}</span></div>
-    </div>
-    <div style="font-size:13px;color:var(--text2);line-height:1.9;margin-bottom:16px;background:var(--bg);border-radius:12px;padding:14px">${ad.desc || 'لا يوجد وصف'}</div>
-    <div class="seller-box">
-      <div class="seller-av" id="sellerAv">${(ad.userName||'م').charAt(0).toUpperCase()}</div>
-      <div>
-        <div class="seller-name">👤 ${ad.userName || 'مستخدم'}</div>
-        <div class="seller-city">📍 ${ad.wilaya}</div>
-      </div>
-    </div>
-    <div class="contact-btns">
-      <button class="btn-wa" onclick="window.open('https://wa.me/213${(ad.phone||'').replace(/^0/,'')}?text=${encodeURIComponent('السلام عليكم، رأيت إعلانك على سوق الدواجن: '+ad.title)}','_blank')">
-        💬 واتساب
-      </button>
-      <a class="btn-call" href="tel:${ad.phone}">📞 ${ad.phone || 'اتصال'}</a>
+    <div class="detail-title">${l.title}</div>
+    <div style="background:#f5f5f5;border-radius:12px;padding:12px;margin-bottom:14px;font-size:14px;color:#555;line-height:1.7;">${l.description}</div>
+    <div class="info-row">📍 <strong>الولاية:</strong> ${l.wilaya}</div>
+    <div class="info-row">👤 <strong>البائع:</strong> ${l.seller}</div>
+    <div class="info-row">🏷️ <strong>الفئة:</strong> ${catIcon(l.category)} ${catLabel(l.category)}</div>
+    <div class="info-row">📅 <strong>التاريخ:</strong> ${l.date}</div>
+    <div class="info-row">👁 <strong>المشاهدات:</strong> ${l.views}</div>
+    <div style="margin-top:16px;">
+      <div class="phone-big">${l.phone}</div>
+      <a href="tel:${l.phone}" class="call-btn-big">📞 اتصل الآن</a>
+      <a href="https://wa.me/213${l.phone.substring(1)}" target="_blank" class="whatsapp-btn">💬 واتساب</a>
     </div>`;
-  openModal('detailModal');
-  try { await updateDoc(doc(db,'ads',id), {views: increment(1)}); } catch(e){}
-  // load seller avatar
-  if(ad.userId) {
-    try {
-      const uDoc = await getDoc(doc(db,'users',ad.userId));
-      if(uDoc.exists() && uDoc.data().photoURL) {
-        const el = document.getElementById('sellerAv');
-        if(el) el.innerHTML = `<img src="${uDoc.data().photoURL}">`;
-      }
-    } catch(e){}
+  document.getElementById('sheet-detail').style.display='flex';
+}
+
+function showSheet(name){
+  if(name==='profile')renderProfile();
+  document.getElementById('sheet-'+name).style.display='flex';
+}
+function closeSheet(id){document.getElementById(id).style.display='none';}
+function closeSheetIf(e,id){if(e.target.id===id)closeSheet(id);}
+
+function switchAuthTab(tab){
+  document.getElementById('auth-login').style.display=tab==='login'?'block':'none';
+  document.getElementById('auth-reg').style.display=tab==='reg'?'block':'none';
+  document.getElementById('atab-login').className='a-tab'+(tab==='login'?' on':'');
+  document.getElementById('atab-reg').className='a-tab'+(tab==='reg'?' on':'');
+}
+
+function doLogin(){
+  const ph=document.getElementById('l-phone').value.trim();
+  const pw=document.getElementById('l-pass').value.trim();
+  if(!ph||!pw){toast('يرجى ملء جميع الحقول','err');return;}
+  currentUser={name:'مستخدم',phone:ph};
+  updateUserUI();closeSheet('sheet-auth');
+  toast('مرحباً بك في سوق الدواجن! 🐔');
+}
+
+function doRegister(){
+  const n=document.getElementById('r-name').value.trim();
+  const ph=document.getElementById('r-phone').value.trim();
+  const pw=document.getElementById('r-pass').value.trim();
+  if(!n||!ph||!pw){toast('يرجى ملء جميع الحقول','err');return;}
+  currentUser={name:n,phone:ph};
+  updateUserUI();closeSheet('sheet-auth');
+  toast('تم إنشاء حسابك بنجاح! 🎉');
+}
+
+function updateUserUI(){
+  document.getElementById('s3').textContent=currentUser?1:0;
+  const pl=document.getElementById('post-locked');
+  const pf=document.getElementById('post-form');
+  if(pl&&pf){
+    pl.style.display=currentUser?'none':'block';
+    pf.style.display=currentUser?'block':'none';
+    if(currentUser)document.getElementById('ad-phone').placeholder=currentUser.phone;
   }
-};
+}
 
-window.switchImg = (url, el) => {
-  const main = document.getElementById('mainImgEl');
-  if(main) main.src = url;
-  document.querySelectorAll('.detail-thumb').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-};
+function requireAuth(action){
+  if(!currentUser){showSheet('auth');return;}
+  if(action==='post')switchTab('post');
+}
 
-// ===== AUTH =====
-window.requireAuth = () => {
-  if(!currentUser) { openModal('authModal'); showToast('سجل دخول أولاً لنشر إعلان','info'); }
-  else openModal('postModal');
-};
+function handleImg(input){
+  const file=input.files[0];
+  if(!file)return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    imgBase64=ev.target.result;
+    document.getElementById('img-preview').src=imgBase64;
+    document.getElementById('img-preview').style.display='block';
+    document.getElementById('upload-placeholder').style.display='none';
+  };
+  r.readAsDataURL(file);
+}
 
-window.switchTab = tab => {
-  document.querySelectorAll('.auth-tab').forEach((t,i) => t.classList.toggle('active', (tab==='login'&&i===0)||(tab==='register'&&i===1)));
-  document.getElementById('loginForm').style.display = tab==='login' ? 'block' : 'none';
-  document.getElementById('registerForm').style.display = tab==='register' ? 'block' : 'none';
-};
+function postAd(){
+  const title=document.getElementById('ad-title').value.trim();
+  const price=document.getElementById('ad-price').value.trim();
+  const desc=document.getElementById('ad-desc').value.trim();
+  const cat=document.getElementById('ad-cat').value;
+  const wilaya=document.getElementById('ad-wilaya').value;
+  const phone=document.getElementById('ad-phone').value.trim()||currentUser.phone;
+  if(!title||!price||!desc||!wilaya){toast('يرجى ملء جميع الحقول المطلوبة *','err');return;}
+  listings=[{id:Date.now(),title,category:cat,price,wilaya,description:desc,phone,image:imgBase64,seller:currentUser.name,date:'الآن',verified:false,views:0,isNew:true},...listings];
+  document.getElementById('ad-title').value='';
+  document.getElementById('ad-price').value='';
+  document.getElementById('ad-desc').value='';
+  document.getElementById('ad-phone').value='';
+  document.getElementById('img-preview').style.display='none';
+  document.getElementById('upload-placeholder').style.display='block';
+  imgBase64=null;
+  toast('تم نشر إعلانك بنجاح! 🎉');
+  switchTab('home');
+}
 
-window.doLogin = async () => {
-  const email = document.getElementById('lEmail').value.trim();
-  const pass = document.getElementById('lPass').value;
-  if(!email || !pass) return showToast('أدخل البريد وكلمة المرور','error');
-  const btn = document.getElementById('loginBtn');
-  btn.disabled = true; btn.textContent = 'جاري الدخول...';
-  try {
-    await signInWithEmailAndPassword(auth, email, pass);
-    closeModal('authModal'); showToast('مرحباً بك! 👋');
-  } catch(e) {
-    showToast('بيانات خاطئة أو الحساب غير موجود','error');
+function renderProfile(){
+  const el=document.getElementById('profile-content');
+  if(!currentUser){
+    el.innerHTML=`<div class="sheet-handle"></div>
+      <div style="text-align:center;margin-bottom:20px;">
+        <div class="p-avatar">👤</div>
+        <div style="font-size:20px;font-weight:900;color:#222;">زائر</div>
+        <div style="font-size:13px;color:#888;margin-top:4px;">مرحباً بك في سوق الدواجن DZ</div>
+      </div>
+      <button class="btn-submit-green" onclick="closeSheet('sheet-profile');showSheet('auth');">تسجيل الدخول / إنشاء حساب</button>`;
+  }else{
+    el.innerHTML=`<div class="sheet-handle"></div>
+      <div style="text-align:center;margin-bottom:20px;">
+        <div class="p-avatar">${currentUser.name[0]}</div>
+        <div style="font-size:20px;font-weight:900;color:#222;">${currentUser.name}</div>
+        <div style="font-size:13px;color:#888;margin-top:4px;">مرحباً بك في سوق الدواجن DZ</div>
+      </div>
+      <div class="p-item" onclick="closeSheet('sheet-profile');requireAuth('post');">
+        <div style="font-size:20px;">➕</div>
+        <div style="flex:1;margin-right:10px;"><div style="font-size:15px;font-weight:800;">نشر إعلان</div><div style="font-size:12px;color:#aaa;">أضف إعلانك مجاناً</div></div>
+        <div style="color:#ccc;">›</div>
+      </div>
+      <div class="p-item" onclick="closeSheet('sheet-profile');switchTab('favs');">
+        <div style="display:flex;align-items:center;gap:8px;"><div class="p-badge">${favs.length}</div><div style="font-size:20px;">❤️</div></div>
+        <div style="flex:1;margin-right:10px;"><div style="font-size:15px;font-weight:800;">المفضلة</div><div style="font-size:12px;color:#aaa;">الإعلانات المحفوظة</div></div>
+        <div style="color:#ccc;">›</div>
+      </div>
+      <div class="p-item" style="border:none;">
+        <div style="font-size:20px;">ℹ️</div>
+        <div style="flex:1;margin-right:10px;"><div style="font-size:15px;font-weight:800;">حول التطبيق</div><div style="font-size:12px;color:#aaa;">سوق الدواجن DZ — النسخة 1.0</div></div>
+        <div style="color:#ccc;">›</div>
+      </div>
+      <button onclick="doLogout()" style="width:100%;margin-top:16px;padding:13px;background:#fff0f0;border:1.5px solid #ffcdd2;border-radius:12px;color:#c62828;font-weight:800;cursor:pointer;font-size:15px;font-family:'Tajawal',sans-serif;">تسجيل الخروج</button>`;
   }
-  btn.disabled = false; btn.textContent = '🚀 دخول';
-};
+}
 
-window.doGoogleLogin = async () => {
-  try {
-    await signInWithPopup(auth, googleProvider);
-    closeModal('authModal'); showToast('مرحباً بك! 👋');
-  } catch(e) { showToast('حدث خطأ في الدخول بـ Google','error'); }
-};
+function doLogout(){currentUser=null;updateUserUI();closeSheet('sheet-profile');toast('تم تسجيل الخروج');}
 
-window.doRegister = async () => {
-  const name = document.getElementById('rName').value.trim();
-  const email = document.getElementById('rEmail').value.trim();
-  const phone = document.getElementById('rPhone').value.trim();
-  const city = document.getElementById('rCity').value;
-  const pass = document.getElementById('rPass').value;
-  if(!name||!email||!phone||!city||!pass) return showToast('أكمل جميع الحقول','error');
-  if(pass.length < 6) return showToast('كلمة المرور 6 أحرف على الأقل','error');
-  const btn = document.getElementById('regBtn');
-  btn.disabled = true; btn.textContent = 'جاري الإنشاء...';
-  try {
-    const cred = await createUserWithEmailAndPassword(auth, email, pass);
-    await updateProfile(cred.user, {displayName: name});
-    await setDoc(doc(db,'users',cred.user.uid), {
-      uid: cred.user.uid, name, email, phone, city, createdAt: new Date()
-    });
-    closeModal('authModal'); showToast('تم إنشاء حسابك بنجاح! 🎉');
-  } catch(e) {
-    showToast(e.code === 'auth/email-already-in-use' ? 'هذا البريد مستخدم مسبقاً' : 'حدث خطأ، حاول مرة أخرى','error');
-  }
-  btn.disabled = false; btn.textContent = '✅ إنشاء حساب مجاني';
-};
-
-window.doLogout = async () => {
-  await signOut(auth);
-  closeModal('profileModal');
-  showToast('تم تسجيل الخروج','info');
-};
-
-onAuthStateChanged(auth, async user => {
-  currentUser = user;
-  if(user) {
-    document.getElementById('navGuest').style.display = 'none';
-    document.getElementById('navUser').style.display = 'block';
-    const name = user.displayName || user.email.split('@')[0];
-    document.getElementById('navName').textContent = name;
-    document.getElementById('navAv').textContent = name.charAt(0).toUpperCase();
-    // load user data
-    try {
-      const uDoc = await getDoc(doc(db,'users',user.uid));
-      if(uDoc.exists()) {
-        currentUserData = uDoc.data();
-        if(currentUserData.photoURL) {
-          document.getElementById('navAv').innerHTML = `<img src="${currentUserData.photoURL}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
-        }
-      }
-    } catch(e){}
-  } else {
-    document.getElementById('navGuest').style.display = 'flex';
-    document.getElementById('navUser').style.display = 'none';
-    currentUserData = {};
-  }
-});
-
-// ===== IMAGE PREVIEW =====
-window.previewImages = e => {
-  selectedImgs = Array.from(e.target.files).slice(0,5);
-  const container = document.getElementById('imgPreviews');
-  container.innerHTML = '';
-  selectedImgs.forEach((f,i) => {
-    const reader = new FileReader();
-    reader.onload = ev => {
-      const div = document.createElement('div'); div.className = 'img-prev-item';
-      div.innerHTML = `<img src="${ev.target.result}"><button class="img-prev-del" onclick="removeImg(${i})">✕</button>`;
-      container.appendChild(div);
-    };
-    reader.readAsDataURL(f);
+const TABS=['home','search','favs','post'];
+function switchTab(tab){
+  TABS.forEach(t=>{
+    const pg=document.getElementById('pg-'+t);
+    if(pg)pg.className='page'+(t===tab?' on':'');
+    const lbl=document.getElementById('lbl-'+t);
+    if(lbl)lbl.className='lbl'+(t===tab?' on':'');
   });
-};
-window.removeImg = i => { selectedImgs.splice(i,1); };
+  const fb=document.getElementById('float-btn');
+  if(fb)fb.style.display=(tab==='post')?'none':'flex';
+  if(tab==='favs')renderFavs();
+  if(tab==='search')renderSearch();
+  if(tab==='post')updateUserUI();
+}
 
-// ===== SUBMIT AD =====
-window.submitAd = async () => {
-  if(!currentUser) return showToast('سجل دخول أولاً','error');
-  const title = document.getElementById('adTitle').value.trim();
-  const cat = document.getElementById('adCat').value;
-  const type = document.getElementById('adType').value;
-  const price = document.getElementById('adPrice').value;
-  const qty = document.getElementById('adQty').value.trim();
-  const wilaya = document.getElementById('adWilaya').value;
-  const desc = document.getElementById('adDesc').value.trim();
-  const phone = document.getElementById('adPhone').value.trim();
-  if(!title||!cat||!type||!wilaya||!desc||!phone) return showToast('أكمل الحقول المطلوبة (*)','error');
-  const btn = document.getElementById('submitAdBtn');
-  btn.disabled = true; btn.textContent = '⏳ جاري النشر...';
-  try {
-    let imgUrls = [];
-    for(const img of selectedImgs) {
-      try {
-        const fd = new FormData(); fd.append('image', img);
-        const res = await fetch('https://api.imgur.com/3/image', {method:'POST', headers:{'Authorization':'Client-ID '+IMGUR_ID}, body:fd});
-        const data = await res.json();
-        if(data.success) imgUrls.push(data.data.link);
-      } catch(ie){}
-    }
-    await addDoc(collection(db,'ads'), {
-      title, cat, type, price: price||'', qty, wilaya, desc, phone,
-      images: imgUrls, userId: currentUser.uid,
-      userName: currentUser.displayName || 'مستخدم',
-      createdAt: new Date(), views: 0
-    });
-    closeModal('postModal'); showToast('✅ تم نشر إعلانك بنجاح!');
-    ['adTitle','adPrice','adQty','adDesc','adPhone'].forEach(id => document.getElementById(id).value='');
-    ['adCat','adType','adWilaya'].forEach(id => document.getElementById(id).value='');
-    document.getElementById('imgPreviews').innerHTML='';
-    selectedImgs = [];
-    await loadAds();
-  } catch(e) { showToast('حدث خطأ أثناء النشر','error'); console.error(e); }
-  btn.disabled = false; btn.textContent = '🚀 نشر الإعلان الآن';
-};
-
-// ===== MY ADS =====
-window.openMyAds = async () => {
-  if(!currentUser) return;
-  openModal('myAdsModal');
-  const list = document.getElementById('myAdsList');
-  list.innerHTML = '<div class="loading-wrap"><div class="spinner"></div></div>';
-  const myAds = allAds.filter(a => a.userId === currentUser.uid);
-  if(!myAds.length) {
-    list.innerHTML = `<div class="empty-state"><div class="empty-icon">📭</div><h3>لا توجد إعلانات</h3><p>انشر أول إعلان لك!</p></div>`;
-    return;
-  }
-  list.innerHTML = myAds.map(ad => {
-    const icon = CAT_ICONS[ad.cat] || '📦';
-    return `<div class="my-ad-item">
-      <div class="my-ad-thumb">${ad.images&&ad.images[0]?`<img src="${ad.images[0]}" alt="">`:icon}</div>
-      <div class="my-ad-info">
-        <div class="my-ad-title">${ad.title}</div>
-        <div class="my-ad-price">${ad.price ? Number(ad.price).toLocaleString()+' دج' : 'قابل للتفاوض'}</div>
-        <div class="my-ad-stats">👁️ ${ad.views||0} مشاهدة • 📍 ${ad.wilaya}</div>
-      </div>
-      <div class="my-ad-actions">
-        <button class="btn-edit" onclick="openEditAd('${ad.id}')">تعديل</button>
-        <button class="btn-del" onclick="deleteAd('${ad.id}',this)">حذف</button>
-      </div>
-    </div>`;
-  }).join('');
-};
-
-window.deleteAd = async (id, btn) => {
-  if(!confirm('هل أنت متأكد من حذف هذا الإعلان؟')) return;
-  btn.textContent = '...'; btn.disabled = true;
-  try {
-    await deleteDoc(doc(db,'ads',id));
-    allAds = allAds.filter(a => a.id !== id);
-    updateCounts(); renderHomeAds(); openMyAds();
-    showToast('تم حذف الإعلان','info');
-  } catch(e) { showToast('حدث خطأ','error'); }
-};
-
-window.openEditAd = id => {
-  const ad = allAds.find(a => a.id === id);
-  if(!ad) return;
-  document.getElementById('editAdId').value = id;
-  document.getElementById('editAdTitle').value = ad.title || '';
-  document.getElementById('editAdPrice').value = ad.price || '';
-  document.getElementById('editAdQty').value = ad.qty || '';
-  document.getElementById('editAdDesc').value = ad.desc || '';
-  document.getElementById('editAdPhone').value = ad.phone || '';
-  closeModal('myAdsModal');
-  openModal('editAdModal');
-};
-
-window.saveEditAd = async () => {
-  const id = document.getElementById('editAdId').value;
-  const btn = document.getElementById('saveEditBtn');
-  btn.disabled = true; btn.textContent = 'جاري الحفظ...';
-  try {
-    const updates = {
-      title: document.getElementById('editAdTitle').value.trim(),
-      price: document.getElementById('editAdPrice').value,
-      qty: document.getElementById('editAdQty').value.trim(),
-      desc: document.getElementById('editAdDesc').value.trim(),
-      phone: document.getElementById('editAdPhone').value.trim(),
-    };
-    await updateDoc(doc(db,'ads',id), updates);
-    const idx = allAds.findIndex(a => a.id === id);
-    if(idx !== -1) allAds[idx] = {...allAds[idx], ...updates};
-    renderHomeAds();
-    closeModal('editAdModal');
-    showToast('✅ تم تعديل الإعلان بنجاح!');
-  } catch(e) { showToast('حدث خطأ','error'); }
-  btn.disabled = false; btn.textContent = '💾 حفظ التعديلات';
-};
-
-// ===== PROFILE =====
-window.openProfileModal = () => {
-  if(!currentUser) return;
-  const name = currentUserData.name || currentUser.displayName || '';
-  document.getElementById('profileName').textContent = name;
-  document.getElementById('profileMeta').textContent = `📧 ${currentUser.email} • 📍 ${currentUserData.city||''}`;
-  document.getElementById('editName').value = name;
-  document.getElementById('editPhone').value = currentUserData.phone || '';
-  document.getElementById('editCity').value = currentUserData.city || '';
-  const av = document.getElementById('profileAvatar');
-  if(currentUserData.photoURL) av.innerHTML = `<img src="${currentUserData.photoURL}">`;
-  else av.textContent = name.charAt(0).toUpperCase();
-  openModal('profileModal');
-};
-
-window.saveProfile = async () => {
-  if(!currentUser) return;
-  const btn = document.getElementById('saveProfileBtn');
-  btn.disabled = true; btn.textContent = 'جاري الحفظ...';
-  try {
-    const updates = {
-      name: document.getElementById('editName').value.trim(),
-      phone: document.getElementById('editPhone').value.trim(),
-      city: document.getElementById('editCity').value,
-    };
-    await updateDoc(doc(db,'users',currentUser.uid), updates);
-    await updateProfile(currentUser, {displayName: updates.name});
-    currentUserData = {...currentUserData, ...updates};
-    document.getElementById('navName').textContent = updates.name;
-    closeModal('profileModal');
-    showToast('✅ تم حفظ التعديلات!');
-  } catch(e) { showToast('حدث خطأ','error'); }
-  btn.disabled = false; btn.textContent = '💾 حفظ التعديلات';
-};
-
-window.changeAvatar = async e => {
-  const file = e.target.files[0];
-  if(!file || !currentUser) return;
-  showToast('جاري رفع الصورة...','info');
-  try {
-    const fd = new FormData(); fd.append('image', file);
-    const res = await fetch('https://api.imgur.com/3/image', {method:'POST', headers:{'Authorization':'Client-ID '+IMGUR_ID}, body:fd});
-    const data = await res.json();
-    if(data.success) {
-      const url = data.data.link;
-      await updateDoc(doc(db,'users',currentUser.uid), {photoURL: url});
-      await updateProfile(currentUser, {photoURL: url});
-      currentUserData.photoURL = url;
-      document.getElementById('profileAvatar').innerHTML = `<img src="${url}">`;
-      document.getElementById('navAv').innerHTML = `<img src="${url}" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`;
-      showToast('✅ تم تغيير الصورة!');
-    }
-  } catch(e) { showToast('حدث خطأ في رفع الصورة','error'); }
-};
-
-// override profile modal open button
-document.getElementById('navAv').addEventListener('click', () => openProfileModal());
-
-// ===== INIT =====
-loadAds();
+renderCats();
+renderCards();
+updateUserUI();
 </script>
 </body>
-  </html>
+            </html>
